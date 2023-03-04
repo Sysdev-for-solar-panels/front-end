@@ -1,0 +1,17 @@
+@page "/"
+
+<EditForm Model="@user" OnValidSubmit="HandleSubmit">
+    <InputText id="email" @bind-Value="user.email" />
+    <InputText id="password" @bind-Value="user.password" />
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private LoginModel user = new LoginModel();
+
+    private async void HandleSubmit ()
+    {
+        var http = new HttpClient();
+        var result = await http.GetStringAsync($"http://localhost:5235/api/login?email={user.email}&password={user.password}");
+    }
+}
