@@ -1,11 +1,15 @@
 @import './base.css';
 
 #app {
+  display: grid;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
 
   font-weight: normal;
+  font-family: 'Montserrat';
+  src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+  box-sizing: border-box;
 }
 body{
   background: rgb(63,94,251);
@@ -24,15 +28,3 @@ a,
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-}
