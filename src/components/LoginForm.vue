@@ -22,7 +22,7 @@ import { ref } from 'vue';
 const email = ref<string>()
 const password = ref<string>()
 
-const test = async () => {
+const login = async () => {
     const response = await (await fetch('http://localhost:5235/api/login', {
         method: "POST",
         credentials:"include",
