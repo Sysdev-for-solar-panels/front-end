@@ -17,13 +17,15 @@
 </template>
 
 <script setup lang="ts">
+import router from '@/router';
+import {useLoginCheckerStore} from '@/stores/loginChecker'
 import { ref } from 'vue';
 
 const email = ref<string>()
 const password = ref<string>()
 
 const login = async () => {
-    const response = await (await fetch('http://localhost:5235/api/login', {
+    const response = await fetch('http://localhost:5235/api/login', {
         method: "POST",
         credentials:"include",
         mode: "cors",
@@ -34,7 +36,14 @@ const login = async () => {
             email: email.value,
             password: password.value
         })
-    })).json()
+    })
+
+    const checker =  useLoginCheckerStore()
+
+    if (response.status === 200) {
+        checker.login()
+        router.push('/dashboard')
+    }
 }
 </script>
 
