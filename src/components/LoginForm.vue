@@ -1,13 +1,13 @@
 <template>
     <div class="loginBox">
       <h1>Belépés</h1>
-      <form method="post">
+      <form @submit.prevent="test">
         <div class="textField">
-          <input type="text" required>
-          <label>Felhasználónév</label>
+          <input v-model="email" type="text" required>
+          <label>Email cím</label>
         </div>
         <div class="textField">
-          <input type="password" required>
+          <input v-model="password" type="password" required>
           <label>Jelszó</label>
         </div>
         <input type="submit" value="Belépés" >
@@ -15,6 +15,28 @@
       </form>
     </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const email = ref<string>()
+const password = ref<string>()
+
+const test = async () => {
+    const response = await (await fetch('http://localhost:5235/api/login', {
+        method: "POST",
+        credentials:"include",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: email.value,
+            password: password.value
+        })
+    })).json()
+}
+</script>
 
 <style scoped>
 .loginBox{
