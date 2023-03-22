@@ -1,7 +1,7 @@
 <template>
     <div class="loginBox">
       <h1>Belépés</h1>
-      <form @submit.prevent="test">
+      <form @submit.prevent="login">
         <div class="textField">
           <input v-model="email" type="text" required>
           <label>Email cím</label>
