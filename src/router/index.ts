@@ -38,17 +38,21 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach(async (to) => {
+router.beforeEach(async (to,from) => {
   const loginChecker = useLoginCheckerStore()
 
-  if(!loginChecker.isLogedIn) {
-    console.log('lol')
-    return {name:'login'}
-  } else if (loginChecker.role === to.name) {
-    return true
+  if (loginChecker.isLogedIn) {
+    if (loginChecker.role === to.name) {
+      return true
+    } else {
+      return {name:loginChecker.role}
+    }
   } else {
-    return {name:loginChecker.role}
+    if (to.name != 'login') {
+      return {name:'login'}
+    }
   }
+  
 })
 
 export default router

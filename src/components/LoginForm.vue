@@ -57,6 +57,7 @@ const login = async () => {
         } else if(role === 'admin') {
             router.push('/admin')
         }
+
     } else if (response.status === 404) {
         createToast("Rossz jelszó vagy üzenet",{
             position: "bottom-right",
