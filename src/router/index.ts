@@ -11,23 +11,18 @@ const router = createRouter({
       component: LoginView
     },
     {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: () => import('../views/DashBoardView.vue')
-    },
-    {
       path: '/warehouseman',
-      name: 'warehouseman',
+      name: 'raktaros',
       component: () => import('../views/rDash.vue')
     },
     {
       path: '/warehouse-manager',
-      name: 'warehouseManager',
+      name: 'raktarvezeto',
       component: () => import('../views/rvDash.vue')
     },
     {
       path: '/professional',
-      name: 'professional',
+      name: 'szakember',
       component: () => import('../views/szDash.vue')
     },
     {
@@ -46,10 +41,13 @@ const router = createRouter({
 router.beforeEach(async (to) => {
   const loginChecker = useLoginCheckerStore()
 
-  if(!loginChecker.isLogedIn && to.name !== 'login') {
+  if(!loginChecker.isLogedIn) {
+    console.log('lol')
     return {name:'login'}
-  } else {
+  } else if (loginChecker.role === to.name) {
     return true
+  } else {
+    return {name:loginChecker.role}
   }
 })
 
