@@ -16,6 +16,21 @@ const router = createRouter({
       component: () => import('../views/DashBoardView.vue')
     },
     {
+      path: '/warehouseman',
+      name: 'warehouseman',
+      component: () => import('../views/rDash.vue')
+    },
+    {
+      path: '/warehouse-manager',
+      name: 'warehouseManager',
+      component: () => import('../views/rvDash.vue')
+    },
+    {
+      path: '/professional',
+      name: 'professional',
+      component: () => import('../views/szDash.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'notFound',
       component: () => import('../views/NotFoundView.vue')

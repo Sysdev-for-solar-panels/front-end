@@ -40,14 +40,23 @@ const login = async () => {
             password: password.value
         })
     })
-
+    const message = await response.json()
     const checker =  useLoginCheckerStore()
 
     if (response.status === 200) {
+        const role = message['role']
         checker.login()
-        router.push('/dashboard')
+        checker.setRole(role)
+
+        if (role === 'raktarvezeto') {
+            router.push('/warehouse-manager')
+        } else if(role === 'raktaros') {
+            router.push('/warehouseman')
+        } else if(role === 'szakember') {
+            router.push('/professional')
+        }
     } else if (response.status === 404) {
-        createToast("Wrong email or password!",{
+        createToast("Rossz jelszó vagy üzenet",{
             position: "bottom-right",
             transition: "slide",
         })

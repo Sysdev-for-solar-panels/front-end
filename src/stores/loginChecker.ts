@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useLoginCheckerStore = defineStore('login', () => {
   const isLogedIn = ref(false)
+  const role = ref<string>()
 
   function login() {
     isLogedIn.value = true
@@ -12,7 +13,11 @@ export const useLoginCheckerStore = defineStore('login', () => {
     isLogedIn.value = false
   }
 
-  return { isLogedIn, logout, login }
+  function setRole( value = undefined ) {
+    role.value = value
+  }
+
+  return { isLogedIn, logout, login, setRole, role }
 },
 {
   persist:true
