@@ -17,6 +17,9 @@
 </template>
 
 <script setup lang="ts">
+import { createToast } from 'mosha-vue-toastify';
+import 'mosha-vue-toastify/dist/style.css'
+
 import router from '@/router';
 import {useLoginCheckerStore} from '@/stores/loginChecker'
 import { ref } from 'vue';
@@ -43,7 +46,13 @@ const login = async () => {
     if (response.status === 200) {
         checker.login()
         router.push('/dashboard')
+    } else if (response.status === 404) {
+        createToast("Wrong email or password!",{
+            position: "bottom-right",
+            transition: "slide",
+        })
     }
+
 }
 </script>
 
