@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import DashBoard from '@/components/DashBoard.vue';
+import MenuInterface from '@/components/MenuInterface.vue';
+import SideMenu from '@/components/SideMenu.vue';
 </script>
 
 <template>
-    <DashBoard />
+    <SideMenu class="menu"/>
+    <MenuInterface class="interface"/>
 </template>
