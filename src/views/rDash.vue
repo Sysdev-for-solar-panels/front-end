@@ -10,5 +10,4 @@ import {logout} from '@/router/logout'
 </template>
 
 <style scoped>
-
 </style>

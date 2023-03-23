@@ -8,7 +8,6 @@ import {logout} from '@/router/logout'
         </div>
     </div>
 </template>
-
 <style scoped>
 
 </style>

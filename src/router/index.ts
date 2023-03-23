@@ -18,7 +18,7 @@ const router = createRouter({
     {
       path: '/warehouse-manager',
       name: 'raktarvezeto',
-      component: () => import('../views/rvDash.vue')
+      component: () => import('../views/WarehouseMangerView.vue')
     },
     {
       path: '/professional',
@@ -38,7 +38,7 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach(async (to,from) => {
+router.beforeEach(async (to) => {
   const loginChecker = useLoginCheckerStore()
 
   if (loginChecker.isLogedIn) {
@@ -52,7 +52,5 @@ router.beforeEach(async (to,from) => {
       return {name:'login'}
     }
   }
-  
 })
-
 export default router
