@@ -54,6 +54,8 @@ const login = async () => {
             router.push('/warehouseman')
         } else if(role === 'szakember') {
             router.push('/professional')
+        } else if(role === 'admin') {
+            router.push('/admin')
         }
     } else if (response.status === 404) {
         createToast("Rossz jelszó vagy üzenet",{

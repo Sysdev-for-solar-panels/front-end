@@ -31,6 +31,11 @@ const router = createRouter({
       component: () => import('../views/szDash.vue')
     },
     {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('../views/adminDash.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'notFound',
       component: () => import('../views/NotFoundView.vue')
