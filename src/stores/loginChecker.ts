@@ -13,4 +13,7 @@ export const useLoginCheckerStore = defineStore('login', () => {
   }
 
   return { isLogedIn, logout, login }
+},
+{
+  persist:true
 })
