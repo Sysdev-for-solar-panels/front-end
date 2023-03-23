@@ -1,5 +1,12 @@
+<script setup lang="ts">
+import {logout} from '@/router/logout'
+</script>
+
 <template>
     <div class="wrapper">
+        <div class="item1">
+            <button @click="logout">Kijelentkezés</button>
+        </div>
         <div class="item2" id="b1">
         <h1>Új hozzáadása</h1>
         <table>
