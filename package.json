@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"vite\" \"cd back-end && dotnet run\"",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
@@ -17,6 +17,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
+    "concurrently": "^7.6.0",
     "mosha-vue-toastify": "^1.0.23",
     "pinia": "^2.0.32",
     "pinia-plugin-persistedstate": "^3.1.0",
