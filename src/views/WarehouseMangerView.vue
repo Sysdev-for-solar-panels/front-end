@@ -1,10 +1,10 @@
 <template>
     <div class="menu">
-        <SideMenu/>
+        <SideMenu @change-interface="change"/>
     </div>
     <div class="interace">
-        <ComponentAdder/>
-        <ComponentChanger v-show="false"/>
+        <ComponentAdder v-show="componentAdder"/>
+        <ComponentChanger v-show="componentChanger"/>
     </div>
 </template>
 
@@ -12,6 +12,17 @@
     import ComponentAdder from '@/components/componentAdder.vue'
     import ComponentChanger from '@/components/componentChanger.vue'
     import SideMenu from '@/components/SideMenu.vue';
+    import { ref } from 'vue';
+
+    const componentAdder = ref(true)
+    const componentChanger = ref(false)
+
+    const change = (id:string) => {
+        componentAdder.value = false
+        componentChanger.value = false
+        //execute id as a ts script
+        eval(id).value = true
+    }
 </script>
 
 <style scoped>

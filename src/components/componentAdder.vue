@@ -10,7 +10,7 @@
                 <td><input class="item" id="bNameValue" type="text"></td>
                 <td><input class="item" id="bPriceValue" type="number"></td>
                 <td><input class="item" id="bQuantityValue" type="number"></td>
-                <td><input type="submit" @click=""></td>
+                <td><input type="submit" value="Küldés"></td>
             </tr>
             <tr>
                 <td>
@@ -26,7 +26,7 @@
 <style scoped>
 .wrapper {
     height: 90vh; /*90vh volt az original*/
-    background-color: white;
+    background-color: rgb(255, 255,255, 0.8);
     color: black;
     font-size: 16px;
 }
