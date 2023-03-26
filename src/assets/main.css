@@ -1,5 +1,5 @@
 @import './base.css';
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 #app {
   display: grid;
   grid-template-columns: 0.5fr 2fr;
@@ -7,14 +7,13 @@
   margin: 0 auto;
   padding: 2rem;
   gap: 2rem;
-  font-weight: normal;
-  font-family: 'Montserrat';
-  src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+  /*font-weight: normal;
+  src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');*/
+  font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
 }
 body{
-  background: rgb(63,94,251);
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 96%);
+  background-image: linear-gradient(to right top, #0f6bae, #1471b5, #1877bd, #1b7dc4, #1f83cc, #3c8bd3, #5092da, #619ae1, #7fa6e9, #99b3f0, #b0c0f8, #c6cdff);
 }
 
 .loginBox {

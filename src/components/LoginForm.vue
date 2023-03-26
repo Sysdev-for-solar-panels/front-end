@@ -75,6 +75,7 @@ const login = async () => {
     transform: translate(-50%, -50%);
     width: 350px;
     background: white;
+    opacity: 80%;
     border-radius: 10px;
 }
 .loginBox form{ 
@@ -138,9 +139,9 @@ input[type="submit"]{
     width: 100%;
     height: 50px;
     font-size: 20px;
-    color: #e9f4fb;
-    border: 5px solid;
+    color: black;
+    border: 0px solid;
     border-radius: 25px;
-    background: #800080;
+    background: #2FFFAD;
 }
 </style>

@@ -74,7 +74,7 @@ import { ref } from 'vue';
 
 .wrapper {
     height: 90vh; /*90vh volt az original*/
-    background-color: rgb(255, 255,255, 0.8);
+    background-color: #83b8ff;
     color: black;
     font-size: 1.5rem;
 }
@@ -83,7 +83,7 @@ import { ref } from 'vue';
 .container {
     display: grid;
     padding: 16px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #83b8ff;
     height: 90vh;
 }
 
@@ -94,26 +94,27 @@ input[type=text], input[type=password] {
   margin: 5px 0 22px 0;
   display: inline-block;
   border: none;
-  background: #f1f1f1;
+  background: #e1e1e1;
   font-size: 1.5rem;
 }
 
 input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
+  background-color: #e1e1e1;
   outline: none;
 }
 
 select {
     width: 100%;
+    padding: 10px;
     font-size: 1.5rem;
     display: inline-block;
-    background-color: #f1f1f1;
+    background-color: #e1e1e1;
     border: none;
 }
 
 option {
-    color: white;
-    background-color: purple;
+    color: black;
+    background-color: white;
 }
 /* Overwrite default styles of hr */
 hr {
@@ -124,7 +125,7 @@ hr {
 
 /* Set a style for the submit button */
 .registerbtn {
-  background-color: purple;
+  background-color: #0f6bae;
   color: white;
   padding: 16px 20px;
   margin: 8px 0;

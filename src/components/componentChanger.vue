@@ -1,58 +1,43 @@
 <template>
     <div class="wrapper">
-    <table class="tablazat">
-        <tr>
-            <th>ID</th>
-            <th>Új ár</th>
-        </tr>
-        <tr>
-            <td><input class="item" type="number" minlength="1" id="rvIdUpdate"></td>
-            <td><input class="item" type="number" minlength="1" id="rvPriceUpdate"></td>
-            <td><button type="submit" id="rvButtonUpdate" onsubmit="">Módosít</button></td>
-        </tr>
-    </table>
-</div>
+        <div class="changerBox">
+            
+            <input type="text" id="id" placeholder="ID"><br><br>
+            <input type="number" id="price" placeholder="Új ár"><br><br>
+            <input type="submit" @click="" value="Módosít">
+        </div>
+        
+    </div>
 </template>
 
 <style scoped>
-
-.tablazat{
-    padding-top: 15%;
-    padding-bottom: 15%;
-    padding-left: 5%;
-    padding-right: 5%;
-    width: 100%;
-    height: auto;
-    font-size: 18px;
-    font-style: oblique;
+.wrapper {
+    height: 90vh; 
+    background-color: rgb(255, 255,255, 0.8);
+}
+.changerBox{
+    padding-left: 35%;
+    padding-right: 35%;
+    padding-top: 19%;
+    color: black;
 }
 
-button {
+input[type="submit"]{
     padding: 10px;
-    width: 100px;
-    background-color: purple;
-    color:white;
-    height: 40px;
-    font-size: 18px;
+    width: 400px;
+    background-color: #2FFFAD;
+    color:black;
+    height: 50px;
+    font-size: 20px;
+    border: none;
+    border-radius: 25px;
+    letter-spacing: 2px;
 }
 
 input[type="text"], input[type="number"]{
-    padding: 10px;
+    padding: 25px;
     height: 40px;
     font-size: 18px;
-
-}
-
-.wrapper {
-    height: 90vh; /*90vh volt az original*/
-    background-color: rgb(255, 255,255, 0.8);
-    color: black;
-    font-size: 16px;
-}
-
-
-.item {
-    width: 100%;
-    text-align: center;
+    width: 400px;
 }
 </style>

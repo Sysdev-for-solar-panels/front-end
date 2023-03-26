@@ -61,15 +61,15 @@ const changeInterface = (event:Event) => {
 <style scoped>
 .wrapper {
     display: grid;
-    background-color: rgba(158, 32, 175,0.45);
+    background-color: #83b8ff;
     height: 90vh;
-    border-radius: 30px;
+    border-radius: 0px;
 }
 
 button{
     color: white;
     border: none;
-    background-color: purple;
+    background-color: #0f6bae;
     height: 3rem;
     border-radius: 10px;
 }
