@@ -28,7 +28,7 @@ const router = createRouter({
     {
       path: '/admin',
       name: 'admin',
-      component: () => import('../views/AdminDash.vue')
+      component: () => import('../views/AdminDashView.vue')
     },
     {
       path: '/:pathMatch(.*)*',

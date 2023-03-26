@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import {logout} from '@/router/logout'
+import { useLoginCheckerStore } from '@/stores/loginChecker';
+import { onBeforeMount, ref } from 'vue';
 
 const emit = defineEmits([
     "change-interface"
 ])
+const role = ref<string>()
+
+onBeforeMount(() => {
+    const store = useLoginCheckerStore()
+    role.value = store.role
+})
 
 const changeInterface = (event:Event) => {
  const switchToInterface = (event.currentTarget as Element).id
@@ -14,7 +22,7 @@ const changeInterface = (event:Event) => {
 <template>
     <div class="wrapper">
         <div class="container">
-            <button id="componentAdder" @click="changeInterface">
+            <button v-show ="role === 'raktarvezeto'" id="componentAdder" @click="changeInterface">
                 <div class="button-container">
                     <font-awesome-icon class="icon" :icon="['fas', 'plus']" />
                     <div class="text">
@@ -22,11 +30,19 @@ const changeInterface = (event:Event) => {
                     </div>
                 </div>
             </button>
-            <button id="componentChanger" @click="changeInterface">
+            <button v-show ="role === 'raktarvezeto'" id="componentChanger" @click="changeInterface">
                 <div class="button-container">
                     <font-awesome-icon class="icon" :icon="['fas', 'dollar-sign']" />
                     <div class="text">
                         Ár
+                    </div>
+                </div>
+            </button>
+            <button v-show ="role === 'admin'" id="componentChanger" @click="changeInterface">
+                <div class="button-container">
+                    <font-awesome-icon id="NewUser" class="icon" :icon="['fas', 'user-plus']" />
+                    <div class="text">
+                        Felhasználó
                     </div>
                 </div>
             </button>

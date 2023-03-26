@@ -8,7 +8,7 @@ export const logout = async () => {
         mode: 'cors',
         method: "GET",
     })
-    store.logout()
     store.setRole()
+    store.logout()
     router.push('/')
 }
