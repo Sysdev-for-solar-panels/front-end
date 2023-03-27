@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const addComponent = () => {
+
+}
+</script>
+
 <template>
     <div class="wrapper">
         <div class="adderBox">
@@ -7,7 +13,7 @@
             <input type="number" id="price" placeholder="Ár"><br><br>
             
             <input type="number" id="quantity" placeholder="Darab"><br><br>
-            <input type="submit" @click="" value="Hozzáad">
+            <input type="submit" @click="addComponent" value="Hozzáad">
         </div>
         
     </div>

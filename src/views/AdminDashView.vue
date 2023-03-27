@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NewUserComponent from '@/components/NewUserComponent.vue';
+import NewUserComponent from '@/components/admin/NewUserComponent.vue';
 import SideMenu from '@/components/SideMenu.vue';
 import { ref } from 'vue';
 

@@ -3,23 +3,23 @@
         <SideMenu @change-interface="change"/>
     </div>
     <div class="interace">
-        <ComponentAdder v-show="componentAdder"/>
-        <ComponentChanger v-show="componentChanger"/>
+        <ComponentAdd v-show="componentAdd"/>
+        <ChangeComponentPrice v-show="changeComponentPrice"/>
     </div>
 </template>
 
 <script setup lang="ts">
-    import ComponentAdder from '@/components/componentAdder.vue'
-    import ComponentChanger from '@/components/componentChanger.vue'
+    import ChangeComponentPrice from '@/components/warehouseManager/ChangeComponentPrice.vue'
+    import ComponentAdd from '@/components/warehouseManager/ComponentAdd.vue'
     import SideMenu from '@/components/SideMenu.vue';
     import { ref } from 'vue';
 
-    const componentAdder = ref(true)
-    const componentChanger = ref(false)
+    const componentAdd = ref(true)
+    const changeComponentPrice = ref(false)
 
     const change = (id:string) => {
-        componentAdder.value = false
-        componentChanger.value = false
+        componentAdd.value = false
+        changeComponentPrice.value = false
         //execute id as a ts script
         eval(id).value = true
     }

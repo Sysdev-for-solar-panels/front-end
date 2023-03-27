@@ -22,7 +22,7 @@ const changeInterface = (event:Event) => {
 <template>
     <div class="wrapper">
         <div class="container">
-            <button v-show ="role === 'raktarvezeto'" id="componentAdder" @click="changeInterface">
+            <button v-show ="role === 'raktarvezeto'" id="componentAdd" @click="changeInterface">
                 <div class="button-container">
                     <font-awesome-icon class="icon" :icon="['fas', 'plus']" />
                     <div class="text">
@@ -30,7 +30,7 @@ const changeInterface = (event:Event) => {
                     </div>
                 </div>
             </button>
-            <button v-show ="role === 'raktarvezeto'" id="componentChanger" @click="changeInterface">
+            <button v-show ="role === 'raktarvezeto'" id="changeComponentPrice" @click="changeInterface">
                 <div class="button-container">
                     <font-awesome-icon class="icon" :icon="['fas', 'dollar-sign']" />
                     <div class="text">
@@ -38,9 +38,9 @@ const changeInterface = (event:Event) => {
                     </div>
                 </div>
             </button>
-            <button v-show ="role === 'admin'" id="componentChanger" @click="changeInterface">
+            <button v-show ="role === 'admin'" id="NewUser" @click="changeInterface">
                 <div class="button-container">
-                    <font-awesome-icon id="NewUser" class="icon" :icon="['fas', 'user-plus']" />
+                    <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
                     <div class="text">
                         Felhasználó
                     </div>

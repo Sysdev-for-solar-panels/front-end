@@ -1,10 +1,16 @@
+<script setup lang="ts">
+const changePice = () => {
+
+}
+</script>
+
 <template>
     <div class="wrapper">
         <div class="changerBox">
             
             <input type="text" id="id" placeholder="ID"><br><br>
             <input type="number" id="price" placeholder="Új ár"><br><br>
-            <input type="submit" @click="" value="Módosít">
+            <input type="submit" @click="changePice" value="Módosít">
         </div>
         
     </div>
