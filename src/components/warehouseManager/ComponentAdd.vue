@@ -1,6 +1,39 @@
 <script setup lang="ts">
-const addComponent = () => {
+import { createToast } from 'mosha-vue-toastify';
+import { ref } from 'vue';
 
+const name = ref<string>()
+const price = ref<string>()
+const quantity = ref<string>()
+
+const addComponent = async () => {
+    const response = await fetch('http://localhost:5235/api/add-component', {
+        method: "POST",
+        credentials:"include",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: name.value,
+            price: price.value,
+            maxQuantity:quantity.value
+        })
+    })
+
+    if (response.status === 200) {
+        createToast("Sikeres alkatrész felvétel!",{
+            position: "bottom-right",
+            transition: "slide",
+        })
+    } else if (response.status === 404) {
+        createToast("Hiányzó adat!",{
+            position: "bottom-right",
+            transition: "slide",
+        })
+    }
+
+    console.log(await response.json())
 }
 </script>
 
@@ -8,12 +41,12 @@ const addComponent = () => {
     <div class="wrapper">
         <div class="adderBox">
             
-            <input type="text" id="name" placeholder="Név"><br><br>
+            <input v-model="name"  autocomplete="off" type="text" id="name" placeholder="Név"><br><br>
             
-            <input type="number" id="price" placeholder="Ár"><br><br>
+            <input v-model="price"  autocomplete="off" type="number" id="price" placeholder="Ár"><br><br>
             
-            <input type="number" id="quantity" placeholder="Darab"><br><br>
-            <input type="submit" @click="addComponent" value="Hozzáad">
+            <input v-model="quantity"  autocomplete="off" type="number" id="quantity" placeholder="Darab"><br><br>
+            <input autocomplete="off" type="submit" @click="addComponent" value="Hozzáad">
         </div>
         
     </div>

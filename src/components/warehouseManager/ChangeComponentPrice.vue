@@ -8,11 +8,10 @@ const changePice = () => {
     <div class="wrapper">
         <div class="changerBox">
             
-            <input type="text" id="id" placeholder="ID"><br><br>
-            <input type="number" id="price" placeholder="Új ár"><br><br>
-            <input type="submit" @click="changePice" value="Módosít">
+            <input autocomplete="off" type="text" id="id" placeholder="ID" required><br><br>
+            <input autocomplete="off" type="number" id="price" placeholder="Új ár" required><br><br>
+            <input autocomplete="off" type="submit" @submit="changePice" value="Módosít">
         </div>
-        
     </div>
 </template>
 
