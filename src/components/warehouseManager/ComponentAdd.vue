@@ -32,8 +32,6 @@ const addComponent = async () => {
             transition: "slide",
         })
     }
-
-    console.log(await response.json())
 }
 </script>
 
