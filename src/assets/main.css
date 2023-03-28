@@ -12,10 +12,24 @@
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
 }
-body{
-  background-image: linear-gradient(to right top, #0f6bae, #1471b5, #1877bd, #1b7dc4, #1f83cc, #3c8bd3, #5092da, #619ae1, #7fa6e9, #99b3f0, #b0c0f8, #c6cdff);
+body {
+  background-image: linear-gradient(
+    to right top,
+    #0f6bae,
+    #1471b5,
+    #1877bd,
+    #1b7dc4,
+    #1f83cc,
+    #3c8bd3,
+    #5092da,
+    #619ae1,
+    #7fa6e9,
+    #99b3f0,
+    #b0c0f8,
+    #c6cdff
+  );
 }
 
 .loginBox {
-  grid-column: 1/ span 2;
+  grid-column: 1 / span 2;
 }

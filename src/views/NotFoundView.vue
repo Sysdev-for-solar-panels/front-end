@@ -1,3 +1,3 @@
 <template>
-    <p>not found lol</p>
+  <p>not found lol</p>
 </template>
