@@ -32,6 +32,24 @@ const changeInterface = (event: Event) => {
           <div class="text">Ár</div>
         </div>
       </button>
+      <button v-show="role === 'szakember'" id="newProject" @click="changeInterface">
+        <div class="button-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
+          <div class="text">Új projekt</div>
+        </div>
+      </button>
+      <button v-show="role === 'szakember'" id="getProject" @click="changeInterface">
+        <div class="button-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
+          <div class="text">Projektek listázása</div>
+        </div>
+      </button>
+      <button v-show="role === 'szakember'" id="getPart" @click="changeInterface">
+        <div class="button-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
+          <div class="text">Alkatrészek listázása</div>
+        </div>
+      </button>
       <button v-show="role === 'admin'" id="NewUser" @click="changeInterface">
         <div class="button-container">
           <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
