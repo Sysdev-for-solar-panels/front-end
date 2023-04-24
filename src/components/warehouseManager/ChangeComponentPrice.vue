@@ -47,7 +47,7 @@ watch(() => prop.dataChanged, async () => {
       <div>Name</div>
       <div>Price</div>
     </div>
-    <div class="line" v-for="component in components" :key="component.name">
+    <div class="line" v-for="component in components" :key="component['Price']">
       <div>
         {{ component["ID"] }}
       </div>
