@@ -40,7 +40,7 @@ const addComponent = async () => {
 
 <template>
   <div class="wrapper">
-    <div class="adderBox">
+    <div class="container">
       <input
         v-model="projectName"
         autocomplete="off"
@@ -77,15 +77,18 @@ const addComponent = async () => {
   </div>
 </template>
 <style scoped>
+* {
+  box-sizing: border-box;
+}
 .wrapper {
   height: 90vh;
-  background-color: rgb(255, 255, 255, 0.8);
+  background-color: #83b8ff;
 }
-.adderBox {
-  padding-left: 35%;
-  padding-right: 35%;
-  padding-top: 19%;
-  color: black;
+.container {
+  display: grid;
+  padding: 16px;
+  background-color: #83b8ff;
+  height: 90vh;
 }
 
 input[type='submit'] {
@@ -98,17 +101,23 @@ input[type='submit'] {
   border: none;
   border-radius: 25px;
   letter-spacing: 2px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-input[type='text'],
-input[type='number'] {
-  padding: 25px;
-  height: 40px;
-  font-size: 18px;
-  width: 400px;
-}
-.item {
+input[type='text'] {
   width: 100%;
-  text-align: center;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #e1e1e1;
+  font-size: 1.5rem;
+}
+
+input[type='text']:focus {
+  background-color: #e1e1e1;
+  outline: none;
 }
 </style>

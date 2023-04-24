@@ -23,8 +23,32 @@ export default defineComponent({
         this.projects = data;
       });
   },
+  /*mounted() {
+    this.projects = [
+      {
+        projectName: "Project A",
+        location: "Budapest",
+        description: "Ez egy nagyon fontos projekt.",
+        orderData: "345687",
+        status: "in progress",
+      },
+      {
+        projectName: "Project A",
+        location: "Budapest",
+        description: "Ez egy nagyon fontos projekt.",
+        orderData: "345687",
+        status: "in progress",
+      },
+      {
+        projectName: "Project A",
+        location: "Budapest",
+        description: "Ez egy nagyon fontos projekt.",
+        orderData: "345687",
+        status: "in progress",
+      }
+    ];
+  },*/
 });
-
 </script>
 
 <template>
@@ -54,7 +78,7 @@ export default defineComponent({
 <style scoped>
 .wrapper {
   height: 90vh;
-  background-color: rgb(255, 255, 255, 0.8);
+  background-color: #83b8ff;
 }
 .table-container {
   width: 100%;
@@ -66,14 +90,17 @@ table {
 }
 
 thead th {
-  background-color: #F5F5F5;
+  color:white;
+  background-color: #0f6bae;
   font-weight: bold;
-  text-align: left;
+  text-align: center;
   padding: 10px;
 }
 
 tbody td {
   border: 1px solid #DDD;
   padding: 10px;
+  background-color: hsl(205, 44%, 22%);
+  color:white;
 }
 </style>
