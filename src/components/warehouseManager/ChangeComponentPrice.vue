@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import { createToast } from 'mosha-vue-toastify'
-import { onBeforeMount, ref } from 'vue'
+import { onBeforeMount, ref, defineEmits, watch } from 'vue'
 
-const changePrice = () => {
+const emit = defineEmits([
+  'show-pop-up',
+  'refresh-price'
+])
 
+const changePrice = (id:number) => {
+  emit('show-pop-up',id)
 }
 
 const listComponents = async () => {
@@ -21,6 +25,17 @@ const components = ref()
 
 onBeforeMount(async () =>{
   components.value =  await (await listComponents()).json()
+})
+
+const prop = defineProps<{
+  dataChanged?: boolean
+}>()
+
+watch(() => prop.dataChanged, async () => {
+  if (prop.dataChanged === true) {
+    components.value =  await (await listComponents()).json()
+    emit('refresh-price')
+  }
 })
 
 </script>
@@ -42,7 +57,7 @@ onBeforeMount(async () =>{
       <div>
         {{ component["Price"] }}
       </div>
-      <div @click="changePrice" class="button">
+      <div @click="changePrice(component['ID'])" class="button">
           Új ár <font-awesome-icon :icon="['fa', 'money-bill']" />
       </div>
     </div>
@@ -70,6 +85,7 @@ onBeforeMount(async () =>{
 
 .button {
   background-color: green;
+  user-select: none;
 }
 
 .button:hover {
