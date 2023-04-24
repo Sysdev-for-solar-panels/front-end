@@ -7,13 +7,20 @@ import {
   faRightFromBracket,
   faDollarSign,
   faPlus,
-  faUserPlus
+  faUserPlus,
+  faMoneyBill
 } from '@fortawesome/free-solid-svg-icons'
 import App from './App.vue'
 import router from './router'
 import './assets/main.css'
 
-library.add(faRightFromBracket, faDollarSign, faPlus, faUserPlus)
+library.add(
+  faRightFromBracket, 
+  faDollarSign, 
+  faPlus, 
+  faUserPlus,
+  faMoneyBill
+  )
 
 const app = createApp(App)
 
