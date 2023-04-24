@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { createToast } from 'mosha-vue-toastify';
-import {defineEmits, ref} from 'vue'
+import {ref} from 'vue'
 
 const emit = defineEmits([
     'change-price'

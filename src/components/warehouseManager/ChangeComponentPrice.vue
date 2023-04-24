@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount, ref, defineEmits, watch } from 'vue'
+import { onBeforeMount, ref, watch } from 'vue'
 
 const emit = defineEmits([
   'show-pop-up',
