@@ -35,7 +35,25 @@ const changeInterface = (event: Event) => {
       <button v-show="role === 'raktarvezeto'" id="" @click="changeInterface">
         <div class="button-container">
           <font-awesome-icon class="icon" :icon="['fas', 'screwdriver-wrench']" />
-          <div class="text">Ár</div>
+          <div class="text">Feltöltés</div>
+        </div>
+      </button>
+      <button v-show="role === 'szakember'" id="newProjectComponent" @click="changeInterface">
+        <div class="button-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
+          <div class="text">Új projekt</div>
+        </div>
+      </button>
+      <button v-show="role === 'szakember'" id="projectList" @click="changeInterface">
+        <div class="button-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
+          <div class="text">Projekt lista</div>
+        </div>
+      </button>
+      <button v-show="role === 'szakember'" id="partList" @click="changeInterface">
+        <div class="button-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
+          <div class="text">Alkatrész lista</div>
         </div>
       </button>
       <button v-show="role === 'admin'" id="NewUser" @click="changeInterface">
@@ -68,6 +86,7 @@ button {
   background-color: #0f6bae;
   height: 3rem;
   border-radius: 10px;
+  padding: auto
 }
 
 button:hover {
@@ -104,13 +123,13 @@ button:hover {
   }
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 600px ) {
   .button-container {
     display: grid;
-    grid-template-columns: min-content auto;
-    gap: 20px;
-    padding-left: 10px;
+    grid-template-columns:min-content auto;
+    gap: 5px;
     padding-right: 10px;
+    padding-left: 10px;
   }
 }
 </style>

@@ -23,7 +23,7 @@ const router = createRouter({
     {
       path: '/professional',
       name: 'szakember',
-      component: () => import('../views/szDash.vue')
+      component: () => import('../views/ProfessionalView.vue')
     },
     {
       path: '/admin',
