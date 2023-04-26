@@ -23,31 +23,6 @@ export default defineComponent({
         this.projects = data;
       });
   },
-  /*mounted() {
-    this.projects = [
-      {
-        projectName: "Project A",
-        location: "Budapest",
-        description: "Ez egy nagyon fontos projekt.",
-        orderData: "345687",
-        status: "in progress",
-      },
-      {
-        projectName: "Project A",
-        location: "Budapest",
-        description: "Ez egy nagyon fontos projekt.",
-        orderData: "345687",
-        status: "in progress",
-      },
-      {
-        projectName: "Project A",
-        location: "Budapest",
-        description: "Ez egy nagyon fontos projekt.",
-        orderData: "345687",
-        status: "in progress",
-      }
-    ];
-  },*/
 });
 </script>
 

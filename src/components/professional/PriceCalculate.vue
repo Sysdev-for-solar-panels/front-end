@@ -2,25 +2,26 @@
 
 import { defineComponent } from 'vue';
 
-interface Part {
-    name: string
-    price : Int16Array
-    max_quantity: Int16Array
+interface Project {
+    projectName: string;
+    description: string;
+    status: string;
+    calculatedPrice: string;
 }
 
 export default defineComponent({
   data() {
     return {
-        parts: [] as Part[],
+        projects: [] as Project[],
     };
   },
   created() {
-    fetch('http://localhost:5235/api/get-Part')
+    fetch('http://localhost:5235/api/get-project')
       .then(response => response.json())
-      .then((data: Part[]) => {
-        this.parts = data;
+      .then((data: Project[]) => {
+        this.projects = data;
       });
-  },
+  }
 });
 </script>
 
@@ -29,17 +30,18 @@ export default defineComponent({
     <table>
       <thead>
         <tr>
-          <th>Alkatrész neve</th>
-          <th>Mennyiség</th>
-          <th>Ár</th>
-          <th>Elérhető</th>
+          <th>Projekt neve</th>
+          <th>Leírás</th>
+          <th>Státusz</th>
+          <th>Ár kalkuláció</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(p, index) in parts" :key="index">
-          <td>{{ p.name }}</td>
-          <td>{{ p.price }}</td>
-          <td>{{ p.max_quantity }}</td>
+        <tr v-for="(Project, index) in projects" :key="index">
+          <td>{{ Project.projectName }}</td>
+          <td>{{ Project.description }}</td>
+          <td>{{ Project.status }}</td>
+          <td>{{ Project.calculatedPrice +' Ft'}}</td>
         </tr>
       </tbody>
     </table>
