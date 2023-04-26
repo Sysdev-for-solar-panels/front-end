@@ -32,7 +32,7 @@ const changeInterface = (event: Event) => {
           <div class="text">Ár</div>
         </div>
       </button>
-      <button v-show="role === 'raktarvezeto'" id="" @click="changeInterface">
+      <button v-show="role === 'raktarvezeto'" id="fillComponent" @click="changeInterface">
         <div class="button-container">
           <font-awesome-icon class="icon" :icon="['fas', 'screwdriver-wrench']" />
           <div class="text">Feltöltés</div>

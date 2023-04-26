@@ -9,7 +9,8 @@ import {
   faPlus,
   faUserPlus,
   faMoneyBill,
-  faScrewdriverWrench
+  faScrewdriverWrench,
+  faCirclePlus
 } from '@fortawesome/free-solid-svg-icons'
 import App from './App.vue'
 import router from './router'
@@ -21,7 +22,8 @@ library.add(
     faPlus, 
     faUserPlus,
     faMoneyBill,
-    faScrewdriverWrench
+    faScrewdriverWrench,
+    faCirclePlus
   )
 
 const app = createApp(App)
