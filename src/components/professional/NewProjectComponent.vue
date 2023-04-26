@@ -8,7 +8,7 @@ const description = ref<string>()
 const orderData = ref<string>()
 
 const addComponent = async () => {
-  const response = await fetch('http://localhost:5235/api/add-newProject', {
+  const response = await fetch('http://localhost:5235/api/AddNewProject', {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -93,7 +93,7 @@ const addComponent = async () => {
 
 input[type='submit'] {
   padding: 10px;
-  width: 400px;
+  width: 100%;
   background-color: #2fffad;
   color: black;
   height: 50px;
