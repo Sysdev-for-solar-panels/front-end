@@ -6,7 +6,8 @@ const projectName = ref<string>()
 const location = ref<string>()
 const description = ref<string>()
 const orderData = ref<string>()
-
+const projectStatus = ref<string>()
+  
 const AddNewProject = async () => {
   const response = await fetch('http://localhost:5235/api/add-new-project', {
     method: 'POST',
@@ -19,7 +20,7 @@ const AddNewProject = async () => {
       name: projectName.value,
       location: location.value,
       description: description.value,
-      status: "New",
+      status: projectStatus.value,
       orderData: orderData.value
     })
   })
@@ -40,7 +41,7 @@ const AddNewProject = async () => {
 
 <template>
   <div class="wrapper">
-    <div class="container">
+    <div class="adderBox">
       <input
         v-model="projectName"
         autocomplete="off"
@@ -72,23 +73,28 @@ const AddNewProject = async () => {
         id="quanorderDatatity"
         placeholder="Megrendelő adatok"
       /><br /><br />
+
+      <input disabled type="text" id="projectStatus" name="projectStatus" value="New">
+      <br /><br />
+
       <input autocomplete="off" type="submit" @click="AddNewProject" value="Hozzáad" />
     </div>
   </div>
 </template>
+
 <style scoped>
 * {
-  box-sizing: border-box;
-}
-.wrapper {
-  height: 90vh;
+    box-sizing: border-box;
+  }
+  .wrapper {
+  height: 90py;
   background-color: #83b8ff;
 }
-.container {
-  display: grid;
-  padding: 16px;
-  background-color: #83b8ff;
-  height: 90vh;
+.adderBox {
+  padding-left: 35%;
+  padding-right: 35%;
+  padding-top: 10%;
+  color: black;
 }
 
 input[type='submit'] {
@@ -101,23 +107,37 @@ input[type='submit'] {
   border: none;
   border-radius: 25px;
   letter-spacing: 2px;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
 }
 
-input[type='text'] {
+input[type='text']{
+  padding: 25px;
+  height: 40px;
+  font-size: 18px;
   width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #e1e1e1;
-  font-size: 1.5rem;
+}
+.item {
+  width: 100%;
+  text-align: center;
 }
 
-input[type='text']:focus {
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.5rem;
+  display: inline-block;
   background-color: #e1e1e1;
-  outline: none;
+  border: none;
+}
+
+option {
+  color: black;
+  background-color: white;
+}
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+label{
+  font-size: 20px;
 }
 </style>
