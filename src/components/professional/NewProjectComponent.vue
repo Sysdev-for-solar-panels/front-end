@@ -6,9 +6,10 @@ const projectName = ref<string>()
 const location = ref<string>()
 const description = ref<string>()
 const orderData = ref<string>()
+const projectStatus = ref<string>()
 
-const AddNewProject = async () => {
-  const response = await fetch('http://localhost:5235/api/add-new-project', {
+const addComponent = async () => {
+  const response = await fetch('http://localhost:5235/api/AddNewProject', {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -19,7 +20,7 @@ const AddNewProject = async () => {
       name: projectName.value,
       location: location.value,
       description: description.value,
-      status: "New",
+      status: projectStatus.value,
       orderData: orderData.value
     })
   })
@@ -36,6 +37,7 @@ const AddNewProject = async () => {
     })
   }
 }
+
 </script>
 
 <template>
@@ -72,10 +74,20 @@ const AddNewProject = async () => {
         id="quanorderDatatity"
         placeholder="Megrendelő adatok"
       /><br /><br />
-      <input autocomplete="off" type="submit" @click="AddNewProject" value="Hozzáad" />
+
+      <select 
+        v-model="selected"
+        id="projectStatus">
+        <option value="New">Új</option>
+      </select>
+      <br /><br />
+      <input autocomplete="off" type="submit" @click="addComponent" value="Hozzáad" />
     </div>
+    
   </div>
 </template>
+
+
 <style scoped>
 * {
   box-sizing: border-box;
@@ -120,4 +132,5 @@ input[type='text']:focus {
   background-color: #e1e1e1;
   outline: none;
 }
+
 </style>
