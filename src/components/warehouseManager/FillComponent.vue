@@ -19,6 +19,8 @@ onBeforeMount(async () => {
 
   stackItems.value =  await stackItemReq.json()
 
+  console.log(stackItems.value)
+
   const componentsReq = await fetch('http://localhost:5235/api/list-components', {
     method: 'GET',
     credentials: 'include',
@@ -28,7 +30,37 @@ onBeforeMount(async () => {
     }
   })
   components.value =  await componentsReq.json()
+  console.log(components.value)
 })
+
+const join = async (stackId:number,component:string | undefined) => {
+  if (component) {
+    const response = await fetch('http://localhost:5235/api/join-stack', {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        StackId: stackId,
+        componentname: component
+      })
+    })
+
+    if (response.status === 200) {
+          createToast('Sikeres új komponens felvétel', {
+            position: 'bottom-right',
+            transition: 'slide'
+          }) 
+        } else if (response.status === 500) {
+          createToast('Sikertelen művelet', {
+            position: 'bottom-right',
+            transition: 'slide'
+          })
+        }
+  }
+}
 
 const fillUp = async (name:string, quantity:number, maxQuantity:number, type:string, compId:number) => {
     if (selected.value && newQuantityValue.value) {
@@ -89,8 +121,11 @@ const fillUp = async (name:string, quantity:number, maxQuantity:number, type:str
         <div>
           {{ item.ComponentMaxQuantity }}
         </div>
-        <div @click="fillUp(item.ComponentName,item.ComponentQuantity, item.ComponentMaxQuantity, item.ComponentName, item.ComponentId)" class="button">
+        <div v-if="item.ComponentId" @click="fillUp(item.ComponentName,item.ComponentQuantity, item.ComponentMaxQuantity, item.ComponentName, item.ComponentId)" class="add-button">
           Feltölt <font-awesome-icon :icon="['fa', 'circle-plus']" />
+        </div>
+        <div v-else @click="join(item.StackId,selected)" class="join-button">
+          Hozzá rendel <font-awesome-icon :icon="['fas', 'layer-group']" />
         </div>
       </div>
     </div>
@@ -115,12 +150,21 @@ const fillUp = async (name:string, quantity:number, maxQuantity:number, type:str
   border-style: groove;
 }
 
-.button {
+.add-button {
   background-color: green;
   user-select: none;
 }
 
-.button:hover {
+.add-buttonton:hover {
+  cursor: pointer;
+}
+
+.join-button {
+  background-color: yellow;
+  user-select: none;
+}
+
+.join-button:hover {
   cursor: pointer;
 }
 </style>
