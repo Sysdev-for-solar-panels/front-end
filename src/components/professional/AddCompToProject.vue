@@ -59,11 +59,11 @@ const partName = ref<string>()
 <template>
     <div class="wrapper">
       <div class="adderBox">
-        <label for="parts">Alkatrészek</label>
+        <label for="parts">Alkatrészek</label><br>
         <select v-model="selectedPart" id="parts" required>
             <option v-for="(pp,index) in partsandProject" :value="pp.partNames" :key="index">{{ pp.partNames }}</option>
-        </select>
-        <label for="projects">Projektek</label>
+        </select><br>
+        <label for="projects">Projektek</label><br>
         <select v-model="selectedProject" id="projects" required>
             <option v-for="(pp,index) in partsandProject" :value="pp.projectNames" :key="index">{{ pp.projectNames }}</option>
         </select>

@@ -40,84 +40,42 @@ const AddNewProject = async () => {
 
 <template>
   <div class="wrapper">
+    
     <div class="container">
-      <input
-        v-model="projectName"
-        autocomplete="off"
-        type="text"
-        id="projectName"
-        placeholder="Projekt név"
-      /><br /><br />
-
-      <input
-        v-model="location"
-        autocomplete="off"
-        type="text"
-        id="location"
-        placeholder="Helyszín"
-      /><br /><br />
-
-      <input
-        v-model="description"
-        autocomplete="off"
-        type="text"
-        id="description"
-        placeholder="Leírás"
-      /><br /><br />
-
-      <input
-        v-model="orderData"
-        autocomplete="off"
-        type="text"
-        id="quanorderDatatity"
-        placeholder="Megrendelő adatok"
-      /><br /><br />
-      <input autocomplete="off" type="submit" @click="AddNewProject" value="Hozzáad" />
+      <h1>Új projekt hozzáadása</h1><br>
+      <input v-model="projectName" autocomplete="off" type="text" id="projectName" placeholder="Projekt neve"/><br><br>
+      <input v-model="location" autocomplete="off" type="text" id="location" placeholder="Projekt helyszín"/><br><br>
+      <input v-model="description" autocomplete="off" type="text" id="description" placeholder="Projekt leírása"/><br><br>
+      <input v-model="orderData" autocomplete="off" type="text" id="quanorderDatatity" placeholder="Projekt megrendelő ID"/><br><br>
+      <input autocomplete="off" type="submit" @click="AddNewProject" value="Projekt hozzáadása" /><br>
     </div>
   </div>
 </template>
+
 <style scoped>
-* {
-  box-sizing: border-box;
-}
 .wrapper {
-  height: 90vh;
   background-color: #83b8ff;
 }
 .container {
-  display: grid;
-  padding: 16px;
-  background-color: #83b8ff;
-  height: 90vh;
+  padding-left: 35%;
+  padding-top: 10%;
+  display:block;
+  justify-content:center;
+  align-items:center;
 }
 
 input[type='submit'] {
-  padding: 10px;
-  width: 100%;
-  background-color: #2fffad;
-  color: black;
-  height: 50px;
-  font-size: 20px;
-  border: none;
-  border-radius: 25px;
-  letter-spacing: 2px;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
+height: 50px;
+width: 400px;
+border: none;
 }
 
 input[type='text'] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #e1e1e1;
-  font-size: 1.5rem;
+border: none;
+}
+h1{
+  letter-spacing: 3px;
+  color: black;
 }
 
-input[type='text']:focus {
-  background-color: #e1e1e1;
-  outline: none;
-}
 </style>
