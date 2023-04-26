@@ -7,8 +7,8 @@ const location = ref<string>()
 const description = ref<string>()
 const orderData = ref<string>()
 
-const addComponent = async () => {
-  const response = await fetch('http://localhost:5235/api/AddNewProject', {
+const AddNewProject = async () => {
+  const response = await fetch('http://localhost:5235/api/add-new-project', {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -72,7 +72,7 @@ const addComponent = async () => {
         id="quanorderDatatity"
         placeholder="Megrendelő adatok"
       /><br /><br />
-      <input autocomplete="off" type="submit" @click="addComponent" value="Hozzáad" />
+      <input autocomplete="off" type="submit" @click="AddNewProject" value="Hozzáad" />
     </div>
   </div>
 </template>

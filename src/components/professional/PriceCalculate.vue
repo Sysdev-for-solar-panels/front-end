@@ -16,7 +16,7 @@ export default defineComponent({
     };
   },
   created() {
-    fetch('http://localhost:5235/api/get-project')
+    fetch('http://localhost:5235/api/calculate-price')
       .then(response => response.json())
       .then((data: Project[]) => {
         this.projects = data;

@@ -16,7 +16,7 @@ export default defineComponent({
     };
   },
   created() {
-    fetch('http://localhost:5235/api/get-Part')
+    fetch('http://localhost:5235/api/add-component-to-project')
       .then(response => response.json())
       .then((data: partProject[]) => {
         this.partsandProject = data;
@@ -24,7 +24,7 @@ export default defineComponent({
   },
   methods: {
     async addComponentToProject() {
-      const response = await fetch('http://localhost:5235/api/add_Comp_To_Project', {
+      const response = await fetch('http://localhost:5235/api/add-component-to-project', {
         method: 'POST',
         credentials: 'include',
         mode: 'cors',

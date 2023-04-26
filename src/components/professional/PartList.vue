@@ -15,7 +15,7 @@ export default defineComponent({
     };
   },
   created() {
-    fetch('http://localhost:5235/api/get-Part')
+    fetch('http://localhost:5235/api/get-parts')
       .then(response => response.json())
       .then((data: Part[]) => {
         this.parts = data;

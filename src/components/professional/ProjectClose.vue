@@ -15,15 +15,15 @@ export default defineComponent({
     };
   },
   created() {
-    fetch('http://localhost:5235/api/get-Project')
+    fetch('http://localhost:5235/api/close-project')
       .then(response => response.json())
       .then((data: Project[]) => {
         this.project = data;
       });
   },
   methods: {
-    async projectclose() {
-      const response = await fetch('http://localhost:5235/api/CloseProject', {
+    async CloseProject() {
+      const response = await fetch('http://localhost:5235/api/close-project', {
         method: 'POST',
         credentials: 'include',
         mode: 'cors',
@@ -68,7 +68,7 @@ export default defineComponent({
             </select>
             <br /><br />
             
-        <input autocomplete="off" type="submit" @click="projectclose" value="Hozzáad" />
+        <input autocomplete="off" type="submit" @click="CloseProject" value="Hozzáad" />
       </div>
     </div>
   </template>

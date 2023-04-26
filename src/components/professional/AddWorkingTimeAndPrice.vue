@@ -17,15 +17,15 @@ export default defineComponent({
     };
   },
   created() {
-    fetch('http://localhost:5235/api/get-Project')
+    fetch('http://localhost:5235/api/add-time-and-price')
       .then(response => response.json())
       .then((data: Project[]) => {
         this.project = data;
       });
   },
   methods: {
-    async addWorkingTimeAndPrice() {
-      const response = await fetch('http://localhost:5235/api/add_Comp_To_Project', {
+    async AddTimeAndPrice() {
+      const response = await fetch('http://localhost:5235/api/add-time-and-price', {
         method: 'POST',
         credentials: 'include',
         mode: 'cors',
@@ -80,7 +80,7 @@ export default defineComponent({
             placeholder="Munkadíj"
           /><br /><br />
 
-        <input autocomplete="off" type="submit" @click="addWorkingTimeAndPrice" value="Hozzáad" />
+        <input autocomplete="off" type="submit" @click="AddTimeAndPrice" value="Hozzáad" />
       </div>
     </div>
   </template>
