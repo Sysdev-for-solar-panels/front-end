@@ -1,20 +1,20 @@
 <script lang="ts">
 
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 interface Project {
-    projectName: string;
+    name: string;
     description: string;
     status: string;
-    orderData: string;
-    location: string;
+    user_id: number;
+    Location: string;
 
 }
 
 export default defineComponent({
   data() {
     return {
-        projects: [] as Project[],
+        projects: ref<Project[]>()
     };
   },
   created() {
@@ -47,11 +47,11 @@ export default defineComponent({
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(Project, index) in projects" :key="index">
-          <td>{{ Project.projectName }}</td>
-          <td>{{ Project.location }}</td>
+        <tr v-for="(Project) in projects" :key="Project.name">
+          <td>{{ Project.name }}</td>
+          <td>{{ Project.Location }}</td>
           <td>{{ Project.description }}</td>
-          <td>{{ Project.orderData }}</td>
+          <td>{{ Project.user_id }}</td>
           <td>{{ Project.status }}</td>
         </tr>
       </tbody>

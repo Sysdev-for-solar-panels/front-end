@@ -1,21 +1,20 @@
 <script lang="ts">
-
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 interface Part {
-    name: string
-    price : Int16Array
-    max_quantity: Int16Array
+    Name: string
+    Price : object
+    Quantity: number
 }
 
 export default defineComponent({
   data() {
     return {
-        parts: [] as Part[],
+        parts: ref<Part[]>(),
     };
   },
   created() {
-    fetch('http://localhost:5235/api/get-parts',{
+    fetch('http://localhost:5235/api/list-components',{
       method: 'GET',
       credentials: 'include',
       mode: 'cors',
@@ -27,6 +26,7 @@ export default defineComponent({
       .then(response => response.json())
       .then((data: Part[]) => {
         this.parts = data;
+        console.log(this.parts)
       });
   },
 });
@@ -45,9 +45,9 @@ export default defineComponent({
       </thead>
       <tbody>
         <tr v-for="(p, index) in parts" :key="index">
-          <td>{{ p.name }}</td>
-          <td>{{ p.price }}</td>
-          <td>{{ p.max_quantity }}</td>
+          <td>{{ p.Name }}</td>
+          <td>{{ p.Price }}</td>
+          <td>{{ p.Quantity }}</td>
         </tr>
       </tbody>
     </table>
