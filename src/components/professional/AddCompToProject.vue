@@ -17,7 +17,7 @@ export default defineComponent({
   },
   created() {
     fetch('http://localhost:5235/api/set-project-components',{
-      method: 'GET',
+      method: 'POST',
       credentials: 'include',
       mode: 'cors',
       headers: {
