@@ -18,7 +18,14 @@ export default defineComponent({
     };
   },
   created() {
-    fetch('http://localhost:5235/api/list-project')
+    fetch('http://localhost:5235/api/list-project', {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+    })
       .then(response => response.json())
       .then((data: Project[]) => {
         this.projects = data;

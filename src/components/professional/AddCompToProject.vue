@@ -16,7 +16,14 @@ export default defineComponent({
     };
   },
   created() {
-    fetch('http://localhost:5235/api/set-project-components')
+    fetch('http://localhost:5235/api/set-project-components',{
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+    })
       .then(response => response.json())
       .then((data: partProject[]) => {
         this.partsandProject = data;
