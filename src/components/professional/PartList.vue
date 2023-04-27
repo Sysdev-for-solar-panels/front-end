@@ -3,8 +3,9 @@ import { defineComponent, ref } from 'vue';
 
 interface Part {
     Name: string
-    Price : object
     Quantity: number
+    Price: number
+    Status: string
 }
 
 export default defineComponent({
@@ -38,16 +39,17 @@ export default defineComponent({
       <thead>
         <tr>
           <th>Alkatrész neve</th>
-          <th>Mennyiség</th>
           <th>Ár</th>
+          <th>Mennyiség</th>
           <th>Elérhető</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(p, index) in parts" :key="index">
+        <tr v-for="p in parts" :key="p.Name">
           <td>{{ p.Name }}</td>
           <td>{{ p.Price }}</td>
           <td>{{ p.Quantity }}</td>
+          <td>{{ p.Status }}</td>
         </tr>
       </tbody>
     </table>
