@@ -8,7 +8,7 @@ const description = ref<string>()
 const orderData = ref<string>()
 
 const AddNewProject = async () => {
-  const response = await fetch('http://localhost:5235/api/add-new-project', {
+  const response = await fetch('http://localhost:5235/api/create-project', {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',

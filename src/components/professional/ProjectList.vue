@@ -4,10 +4,11 @@ import { defineComponent } from 'vue';
 
 interface Project {
     projectName: string;
-    location: string;
     description: string;
-    orderData: string;
     status: string;
+    orderData: string;
+    location: string;
+
 }
 
 export default defineComponent({
@@ -17,7 +18,7 @@ export default defineComponent({
     };
   },
   created() {
-    fetch('http://localhost:5235/api/list-projects')
+    fetch('http://localhost:5235/api/list-project')
       .then(response => response.json())
       .then((data: Project[]) => {
         this.projects = data;
