@@ -40,43 +40,43 @@ const changeInterface = (event: Event) => {
       </button>
       <button v-show="role === 'szakember'" id="newProjectComponent" @click="changeInterface">
         <div class="button-container">
-          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
+          <font-awesome-icon :icon="['fas', 'plus']" class="icon" />
           <div class="text">Új projekt</div>
         </div>
       </button>
       <button v-show="role === 'szakember'" id="projectList" @click="changeInterface">
         <div class="button-container">
-          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
+          <font-awesome-icon :icon="['fas', 'list']" class="icon"/>
           <div class="text">Projekt lista</div>
         </div>
       </button>
       <button v-show="role === 'szakember'" id="partList" @click="changeInterface">
         <div class="button-container">
-          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
+          <font-awesome-icon :icon="['fas', 'screwdriver']" class="icon" />
           <div class="text">Alkatrész lista</div>
         </div>
       </button>
       <button v-show="role === 'szakember'" id="addCtoP" @click="changeInterface">
         <div class="button-container">
-          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
+          <font-awesome-icon :icon="['fas', 'screwdriver-wrench']" class="icon"/>
           <div class="text">Alkatrész hozzáadás</div>
         </div>
       </button>
       <button v-show="role === 'szakember'" id="addWTandP" @click="changeInterface">
         <div class="button-container">
-          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
+          <font-awesome-icon :icon="['fas', 'pen']" class="icon"/>
           <div class="text">Idő, Ár rögzítés</div>
         </div>
       </button>
       <button v-show="role === 'szakember'" id="priceCalcu" @click="changeInterface">
         <div class="button-container">
-          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
+          <font-awesome-icon :icon="['fas', 'calculator']" class="icon"/>
           <div class="text">Ár kalkuláció</div>
         </div>
       </button>
       <button v-show="role === 'szakember'" id="closeProject" @click="changeInterface">
         <div class="button-container">
-          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
+          <font-awesome-icon :icon="['fas', 'calendar-xmark']" class="icon"/>
           <div class="text">Projekt vége</div>
         </div>
       </button>
