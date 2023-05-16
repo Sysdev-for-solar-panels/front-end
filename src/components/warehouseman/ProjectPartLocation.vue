@@ -2,10 +2,11 @@
 import { defineComponent, ref } from 'vue';
 
 interface Part {
-    Name: string
-    Quantity: number
-    Price: number
-    Status: string
+    Nev: string
+    Sor: number
+    Oszlop: number
+    Polc: number
+    Rekesz: string
 }
 
 export default defineComponent({
@@ -38,17 +39,19 @@ export default defineComponent({
       <thead>
         <tr>
           <th>Alkatrész neve</th>
-          <th>Ár</th>
-          <th>Mennyiség</th>
-          <th>Elérhető</th>
+          <th>Sor</th>
+          <th>Oszlop</th>
+          <th>Polc</th>
+          <th>Rekesz</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="p in parts" :key="p.Name">
-          <td>{{ p.Name }}</td>
-          <td>{{ p.Price }}</td>
-          <td>{{ p.Quantity }}</td>
-          <td>{{ p.Status }}</td>
+        <tr v-for="p in parts" :key="p.Nev">
+          <td>{{ p.Nev }}</td>
+          <td>{{ p.Sor }}</td>
+          <td>{{ p.Oszlop }}</td>
+          <td>{{ p.Polc }}</td>
+          <td>{{ p.Rekesz }}</td>
         </tr>
       </tbody>
     </table>

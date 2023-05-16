@@ -2,20 +2,21 @@
 import { createToast } from 'mosha-vue-toastify'
 import { defineComponent,ref } from 'vue';
 
-interface ProjectStat {
+interface Project {
+    id: number,
     name: string;
     description: string;
     status: string;
-    user_id: number;
     Location: string;
+    time: number;
+    price: number;
 }
 
 export default defineComponent({
   data() {
     return {
-        projectStat: ref<ProjectStat[]>(),
-        selectedProject:'',
-        selectedStatus: ''
+        project: ref<Project[]>(),
+        id:''
     };
   },
   created() {
@@ -23,7 +24,7 @@ export default defineComponent({
   },
   methods: {
     async listProjects() {
-      const response = await fetch('http://localhost:5235/api/list-project',{
+      const response = await fetch('http://localhost:5235/api/list-project', {
         method: 'GET',
         credentials: 'include',
         mode: 'cors',
@@ -33,16 +34,16 @@ export default defineComponent({
       });
       if (response.status === 200) {
         const data = await response.json();
-        this.projectStat = data;
+        this.project = data;
       } else if (response.status === 404) {
         createToast('Hiányzó adat!', {
           position: 'bottom-right',
           transition: 'slide'
-        })
+        });
       }
     },
     async ProjectStatus() {
-      const response = await fetch('http://localhost:5235/api/project-status', {
+      const response = await fetch('http://localhost:5235/api/project-execution', {
         method: 'POST',
         credentials: 'include',
         mode: 'cors',
@@ -50,13 +51,12 @@ export default defineComponent({
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          ProjectName: this.selectedProject,
-          status: this.selectedStatus
+          _id: this.id
         })
-      });
+      })
     
       if (response.status === 200) {
-        createToast('Sikeres projekt státusz módosítás!', {
+        createToast('Sikeres alkatrész hozzáadás a projekthez!', {
           position: 'bottom-right',
           transition: 'slide'
         })
@@ -74,21 +74,30 @@ export default defineComponent({
 
 <template>
     <div class="wrapper">
-      <div class="adderBox">
-          <label for="projects">Projektek</label>
-          <select v-model="selectedProject" id="projects" required>
-            <option v-for="(Project) in projectStat" :key="Project.name">{{ Project.name }}</option>
-        </select>
-          <br /><br />
-          <label for="end">Lezárás</label>
-            <select v-model="selectedStatus" id="end" required>
-            <option value="completed">Completed</option>
-            <option value="failed">Failed</option>
-            </select>
-            <br /><br />
-            
-        <input autocomplete="off" type="submit" @click="ProjectStatus" value="Hozzáad" />
-      </div>
+      <table>
+      <thead>
+        <tr>
+          <th>Név</th>
+          <th>Leírás</th>
+          <th>Státusz</th>
+          <th>Lokáció</th>
+          <th>Idő</th>
+          <th>Ár</th>
+          <th>Státusz módosítás</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="p in project" :key="p.id">
+          <td>{{ p.name }}</td>
+          <td>{{ p.description }}</td>
+          <td>{{ p.status }}</td>
+          <td>{{ p.Location }}</td>
+          <td>{{ p.time }}</td>
+          <td>{{ p.price }}</td>
+          <td><input autocomplete="off" type="submit"  @click="ProjectStatus" value="Kiválaszt"/></td>
+        </tr>
+      </tbody>
+    </table>
     </div>
   </template>
 <style>
@@ -149,6 +158,33 @@ hr {
 }
 label{
   font-size: 20px;
+}
+.wrapper {
+  height: 90vh;
+  background-color: #83b8ff;
+}
+.table-container {
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead th {
+  color:white;
+  background-color: #0f6bae;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+tbody td {
+  border: 1px solid #DDD;
+  padding: 10px;
+  background-color: hsl(205, 44%, 22%);
+  color:white;
 }
   </style>
   

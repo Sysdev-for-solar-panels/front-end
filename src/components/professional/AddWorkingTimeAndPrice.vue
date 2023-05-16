@@ -1,29 +1,50 @@
 <script lang="ts">
 import { createToast } from 'mosha-vue-toastify'
-import { ref, defineComponent } from 'vue';
+import { defineComponent,ref } from 'vue';
 
 interface Project {
-    projectNames: string
+    name: string;
+    description: string;
+    status: string;
+    user_id: number;
+    Location: string;
 }
-const workingTime = ref<string>()
-const workingPrice = ref<string>()
+
+const workingTime = ref<number>()
+const workingPrice = ref<number>()
+
 export default defineComponent({
   data() {
     return {
-        project: [] as Project[],
+      project: ref<Project[]>(),
         selectedProject:'',
-        workingTime: null as string | null,
-        workingPrice: null as string | null
+        workingPrice:null,
+        workingTime:null
     };
   },
   created() {
-    fetch('http://localhost:5235/api/add-time-and-price')
-      .then(response => response.json())
-      .then((data: Project[]) => {
-        this.project = data;
-      });
+    this.listProjects();
   },
   methods: {
+    async listProjects() {
+      const response = await fetch('http://localhost:5235/api/list-project', {
+        method: 'GET',
+        credentials: 'include',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      if (response.status === 200) {
+        const data = await response.json();
+        this.project = data;
+      } else if (response.status === 404) {
+        createToast('Hiányzó adat!', {
+          position: 'bottom-right',
+          transition: 'slide'
+        });
+      }
+    },
     async AddTimeAndPrice() {
       const response = await fetch('http://localhost:5235/api/add-time-and-price', {
         method: 'POST',
@@ -33,13 +54,14 @@ export default defineComponent({
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          wPrice: workingPrice,
-          wTime: workingTime
+          pName : this.selectedProject,
+          workingPrice: workingPrice.value,
+          workingTime: workingTime.value
         })
-      })
+      });
     
       if (response.status === 200) {
-        createToast('Sikeres alkatrész hozzáadás a projekthez!', {
+        createToast('Sikeres idő és összeg hozzárendelés a projekthez!', {
           position: 'bottom-right',
           transition: 'slide'
         })
@@ -52,18 +74,19 @@ export default defineComponent({
     }
   }
 });
+
 </script>
 
 <template>
     <div class="wrapper">
       <div class="container">
           <h1>Idő és Munkadíj</h1>
-          <select v-model="selectedProject" id="projects" required>
-              <option v-for="(pp,index) in project" :value="pp.projectNames" :key="index">{{ pp.projectNames }}</option>
-          </select>
+          <select v-model="selectedProject" id="project" required>
+            <option v-for="(Project) in project" :key="Project.name">{{ Project.name }}</option>
+        </select>
           <br /><br />
-          <input v-model="workingTime" autocomplete="off" type="text" id="workingTime"  placeholder="Munkavégzési idő"/><br /><br />
-          <input v-model="workingPrice" autocomplete="off" type="text" id="workingPrice" placeholder="Munkadíj"/><br /><br />
+          <input v-model="workingTime" autocomplete="off" type="number" id="workingTime"  placeholder="Munkavégzési idő"/><br /><br />
+          <input v-model="workingPrice" autocomplete="off" type="number" id="workingPrice" placeholder="Munkadíj"/><br /><br />
 
         <input autocomplete="off" type="submit" @click="AddTimeAndPrice" value="Hozzáad" />
       </div>
