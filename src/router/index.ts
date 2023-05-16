@@ -13,7 +13,7 @@ const router = createRouter({
     {
       path: '/warehouseman',
       name: 'raktaros',
-      component: () => import('../views/rDash.vue')
+      component: () => import('../views/WarehouseWorkerView.vue')
     },
     {
       path: '/warehouse-manager',
