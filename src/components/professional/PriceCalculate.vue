@@ -1,29 +1,9 @@
-<script lang="ts">
+<script setup lang="ts">
 
 
 </script>
 
 <template>
-  <!-- <div class="wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th>Projekt neve</th>
-          <th>Leírás</th>
-          <th>Státusz</th>
-          <th>Ár kalkuláció</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(Project, index) in projects" :key="index">
-          <td>{{ Project.projectName }}</td>
-          <td>{{ Project.description }}</td>
-          <td>{{ Project.status }}</td>
-          <td>{{ Project.calculatedPrice +' Ft'}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div> -->
 </template>
 <style scoped>
 .wrapper {
