@@ -26,7 +26,7 @@ export default defineComponent({
       parts: ref<Part[]>(),
       projects: ref<Project[]>(),
       partID: 0,
-      projectID:0,
+      projectID:0
     };
   },
   created() {

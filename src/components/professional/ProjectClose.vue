@@ -123,7 +123,7 @@ input[type='number'] {
   padding: 25px;
   height: 40px;
   font-size: 18px;
-  width: 400px;
+  width: 100%;
 }
 .item {
   width: 100%;
@@ -143,10 +143,7 @@ option {
   color: black;
   background-color: white;
 }
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
+
 label{
   font-size: 20px;
 }
