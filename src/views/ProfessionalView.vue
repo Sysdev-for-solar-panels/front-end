@@ -7,7 +7,7 @@
     <ProjectList v-show="projectList" />
     <PartList v-show="partList" />
     <AddCompToProject v-show="addCtoP" />
-    <AddWorkingTimeAndPrice v-show="addWTandP" />
+    <AddWorkingTimeAndPrice v-if="false" v-show="addWTandP" />
     <PriceCalculate v-show="priceCalcu" />
     <ProjectClose v-show="closeProject" />
 

@@ -26,6 +26,18 @@ const changeInterface = (event: Event) => {
           <div class="text">Alkatrész</div>
         </div>
       </button>
+      <button v-show="role === 'raktarvezeto'" id="missingComponent" @click="changeInterface">
+        <div class="button-container">
+          <font-awesome-icon :icon="['fas', 'question']" class="icon"/>
+          <div class="text">Hiányzó</div>
+        </div>
+      </button>
+      <button v-show="role === 'raktarvezeto'" id="reservedMissingComponent" @click="changeInterface">
+        <div class="button-container">
+          <font-awesome-icon :icon="['fas', 'question']" class="icon"/>
+          <div class="text">Foglalt hiányzó</div>
+        </div>
+      </button>
       <button v-show="role === 'raktarvezeto'" id="changeComponentPrice" @click="changeInterface">
         <div class="button-container">
           <font-awesome-icon class="icon" :icon="['fas', 'dollar-sign']" />
@@ -44,7 +56,7 @@ const changeInterface = (event: Event) => {
           <div class="text">Új projekt</div>
         </div>
       </button>
-      <button v-show="role === 'szakember'" id="projectList" @click="changeInterface">
+      <button v-show="role === 'szakember' || role == 'raktaros'" id="projectList" @click="changeInterface">
         <div class="button-container">
           <font-awesome-icon :icon="['fas', 'list']" class="icon"/>
           <div class="text">Projekt lista</div>
@@ -80,22 +92,10 @@ const changeInterface = (event: Event) => {
           <div class="text">Projekt vége</div>
         </div>
       </button>
-      <button v-show="role === 'raktaros'" id="projectExecution" @click="changeInterface">
+      <button v-show="role === 'raktaros'" id="projectComponent" @click="changeInterface">
         <div class="button-container">
-          <font-awesome-icon class="icon" :icon="['fas', 'pen']" />
-          <div class="text">Projekt kivitelezés</div>
-        </div>
-      </button>
-      <button v-show="role === 'raktaros'" id="projectPartLocation" @click="changeInterface">
-        <div class="button-container">
-          <font-awesome-icon class="icon" :icon="['fas', 'screwdriver-wrench']" />
-          <div class="text">Alkatrész elhelyezkedés</div>
-        </div>
-      </button>
-      <button v-show="role === 'raktaros'" id="partRoutePlan" @click="changeInterface">
-        <div class="button-container">
-          <font-awesome-icon class="icon" :icon="['fas', 'screwdriver-wrench']" />
-          <div class="text">Útvonal terv</div>
+          <font-awesome-icon :icon="['fas', 'location-dot']" class="icon"/>
+          <div class="text">Projekt alkatrészek</div>
         </div>
       </button>
       <button @click="logout">

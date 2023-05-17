@@ -1,63 +1,29 @@
 <script lang="ts">
 
-import { defineComponent, ref } from 'vue';
-
-interface Prices {
-    projectName: string;
-    description: string;
-    status: string;
-    projectPrice: number;
-    compPrice: number
-}
-
-
-export default defineComponent({
-  data() {
-    return {
-      prices: ref<Prices[]>()
-    };
-  },
-  created() {
-    fetch('http://localhost:5235/api/price-calculate', {
-      method: 'GET',
-      credentials: 'include',
-      mode: 'cors',
-      headers: {
-      'Content-Type': 'application/json'
-      },
-    })
-      .then(response => response.json())
-      .then((data: Prices[]) => {
-        this.prices = data;
-      });
-  },
-});
 
 </script>
 
 <template>
-  <div class="wrapper">
+  <!-- <div class="wrapper">
     <table>
       <thead>
         <tr>
           <th>Projekt neve</th>
           <th>Leírás</th>
           <th>Státusz</th>
-          <th>Projekt ár kalkuláció</th>
-          <th>Parts ár kalkuláció</th>
+          <th>Ár kalkuláció</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(Project) in prices" :key="Project.projectName">
+        <tr v-for="(Project, index) in projects" :key="index">
           <td>{{ Project.projectName }}</td>
           <td>{{ Project.description }}</td>
           <td>{{ Project.status }}</td>
-          <td>{{ Project.projectPrice +' Ft'}}</td>
-          <td>{{ Project.compPrice +' Ft'}}</td>
+          <td>{{ Project.calculatedPrice +' Ft'}}</td>
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->
 </template>
 <style scoped>
 .wrapper {

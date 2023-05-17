@@ -3,13 +3,16 @@ import { createToast } from 'mosha-vue-toastify'
 import { defineComponent , ref} from 'vue';
 
 interface Part{
+    ID: number
     Name: string
     Quantity: number
+    MaxQuantity: number
     Price: number
     Status: string
 }
 
 interface Project{
+    ID: number
     name: string;
     description: string;
     status: string;
@@ -20,10 +23,10 @@ interface Project{
 export default defineComponent({
   data() {
     return {
-      parts: ref<Part[]>(), // Komponensek adatai
-      projects: ref<Project[]>(), // Projektek adatai
-      selectedPart: '',
-      selectedProject:'',
+      parts: ref<Part[]>(),
+      projects: ref<Project[]>(),
+      partID: 0,
+      projectID:0,
     };
   },
   created() {
@@ -70,6 +73,7 @@ export default defineComponent({
       }
     },
     async addComponentToProject() {
+      console.log(this.projectID+" "+this.partID)
       const response = await fetch('http://localhost:5235/api/set-project-components', {
         method: 'POST',
         credentials: 'include',
@@ -78,8 +82,8 @@ export default defineComponent({
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          prName: this.selectedProject,
-          paName: this.selectedPart
+          ProjectID: this.projectID,
+          ComponentID: this.partID
         })
       });
     
@@ -104,12 +108,12 @@ export default defineComponent({
     <div class="wrapper">
       <div class="adderBox">
         <label for="parts">Alkatrészek</label><br>
-        <select v-model="selectedPart" id="parts" required>
-            <option v-for="p in parts" :key="p.Name">{{ p.Name }}</option>
+        <select v-model="partID" id="parts" required>
+            <option v-for="p in parts" :key="p.ID" :value="p.ID">{{ p.Name }}</option>
         </select><br>
         <label for="projects">Projektek</label><br>
-        <select v-model="selectedProject" id="projects" required>
-            <option v-for="(Project) in projects" :key="Project.name">{{ Project.name }}</option>
+        <select v-model="projectID" id="projects" required>
+            <option v-for="(Project) in projects" :key="Project.ID" :value="Project.ID">{{ Project.name }}</option>
         </select>
         <br /><br />
         <input autocomplete="off" type="submit" @click="addComponentToProject" value="Hozzáad" />
