@@ -27,7 +27,6 @@ export default defineComponent({
       .then(response => response.json())
       .then((data: Part[]) => {
         this.parts = data;
-        console.log(this.parts)
       });
   },
 });

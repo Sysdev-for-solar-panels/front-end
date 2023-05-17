@@ -1,36 +1,18 @@
-<script lang="ts">
+<script setup lang="ts">
 import { createToast } from 'mosha-vue-toastify'
-import { ref, defineComponent } from 'vue';
+import { ref } from 'vue';
 
 interface partProject {
     partNames: string
     projectNames: string
 }
 
-export default defineComponent({
-  data() {
-    return {
-        partsandProject: [] as partProject[],
-        selectedPart: '',
-        selectedProject:'',
-    };
-  },
-  created() {
-    fetch('http://localhost:5235/api/set-project-components',{
-      method: 'POST',
-      credentials: 'include',
-      mode: 'cors',
-      headers: {
-      'Content-Type': 'application/json'
-      },
-    })
-      .then(response => response.json())
-      .then((data: partProject[]) => {
-        this.partsandProject = data;
-      });
-  },
-  methods: {
-    async addComponentToProject() {
+const partsandProject = ref<partProject[]>()
+const selectedPart = ref('')
+const projectName = ref<string>()
+const partName = ref<string>()
+const selectedProject = ref<string>('')
+const addComponentToProject =  async () => {
       const response = await fetch('http://localhost:5235/api/set-project-components', {
         method: 'POST',
         credentials: 'include',
@@ -56,11 +38,6 @@ export default defineComponent({
         })
       }
     }
-  }
-});
-
-const projectName = ref<string>()
-const partName = ref<string>()
 </script>
 
 <template>

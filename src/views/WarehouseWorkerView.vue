@@ -21,6 +21,7 @@ const projectComponent = ref(false)
 const change = (id: string) => {
   //execute id as a ts script
   projectList.value = false
+  projectComponent.value = false
   eval(id).value = true
 }
 </script>

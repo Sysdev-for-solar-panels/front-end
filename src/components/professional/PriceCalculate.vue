@@ -1,32 +1,10 @@
 <script lang="ts">
 
-import { defineComponent } from 'vue';
 
-interface Project {
-    projectName: string;
-    description: string;
-    status: string;
-    calculatedPrice: string;
-}
-
-export default defineComponent({
-  data() {
-    return {
-        projects: [] as Project[],
-    };
-  },
-  created() {
-    fetch('http://localhost:5235/api/calculate-price')
-      .then(response => response.json())
-      .then((data: Project[]) => {
-        this.projects = data;
-      });
-  }
-});
 </script>
 
 <template>
-  <div class="wrapper">
+  <!-- <div class="wrapper">
     <table>
       <thead>
         <tr>
@@ -45,7 +23,7 @@ export default defineComponent({
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->
 </template>
 <style scoped>
 .wrapper {

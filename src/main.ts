@@ -18,6 +18,7 @@ import {
   faCalculator,
   faCalendarXmark,
   faLocationDot,
+  faQuestion,
 } from '@fortawesome/free-solid-svg-icons'
 import App from './App.vue'
 import router from './router'
@@ -37,7 +38,8 @@ library.add(
     faPen,
     faCalculator,
     faCalendarXmark,
-    faLocationDot
+    faLocationDot,
+    faQuestion
   )
 
 const app = createApp(App)

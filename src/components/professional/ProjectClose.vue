@@ -1,29 +1,18 @@
-<script lang="ts">
+<script setup lang="ts">
 import { createToast } from 'mosha-vue-toastify'
-import { ref, defineComponent } from 'vue';
+import { ref } from 'vue';
 
 interface Project {
     projectNames: string
 }
-const closeProject = ref<string>()
-export default defineComponent({
-  data() {
-    return {
-        project: [] as Project[],
-        selectedProject:'',
-        closeProject: null as string | null
-    };
-  },
-  created() {
-    fetch('http://localhost:5235/api/close-project')
-      .then(response => response.json())
-      .then((data: Project[]) => {
-        this.project = data;
-      });
-  },
-  methods: {
-    async CloseProject() {
-      const response = await fetch('http://localhost:5235/api/close-project', {
+const closedProject = ref<string>()
+
+const project = ref<Project[]>()
+const selectedProject = ref()
+
+
+const closeProject = async () => {
+  const response = await fetch('http://localhost:5235/api/close-project', {
         method: 'POST',
         credentials: 'include',
         mode: 'cors',
@@ -46,11 +35,7 @@ export default defineComponent({
           transition: 'slide'
         })
       }
-    }
-  }
-});
-
-
+}
 </script>
 
 <template>
@@ -62,13 +47,12 @@ export default defineComponent({
           </select>
           <br /><br />
           <label for="end">Lezárás</label>
-            <select v-model="closeProject" id="end" required>
+            <select v-model="closedProject" id="end" required>
             <option value="completed">Completed</option>
             <option value="failed">Failed</option>
             </select>
             <br /><br />
-            
-        <input autocomplete="off" type="submit" @click="CloseProject" value="Hozzáad" />
+        <input autocomplete="off" type="submit" @click="closeProject" value="Hozzáad" />
       </div>
     </div>
   </template>

@@ -1,6 +1,6 @@
-<script lang="ts">
+<script setup lang="ts">
 
-import { defineComponent, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 interface Project {
     name: string;
@@ -11,14 +11,9 @@ interface Project {
 
 }
 
-export default defineComponent({
-  data() {
-    return {
-        projects: ref<Project[]>()
-    };
-  },
-  created() {
-    fetch('http://localhost:5235/api/list-project', {
+const projects = ref<Project[]>()
+const getProjects = async () => {
+  const result = await fetch('http://localhost:5235/api/list-project', {
       method: 'GET',
       credentials: 'include',
       mode: 'cors',
@@ -26,12 +21,13 @@ export default defineComponent({
       'Content-Type': 'application/json'
       },
     })
-      .then(response => response.json())
-      .then((data: Project[]) => {
-        this.projects = data;
-      });
-  },
-});
+
+    projects.value = await result.json()
+}
+
+onBeforeMount(() => {
+  getProjects()
+})
 </script>
 
 <template>

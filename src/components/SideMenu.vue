@@ -26,6 +26,18 @@ const changeInterface = (event: Event) => {
           <div class="text">Alkatrész</div>
         </div>
       </button>
+      <button v-show="role === 'raktarvezeto'" id="missingComponent" @click="changeInterface">
+        <div class="button-container">
+          <font-awesome-icon :icon="['fas', 'question']" class="icon"/>
+          <div class="text">Hiányzó</div>
+        </div>
+      </button>
+      <button v-show="role === 'raktarvezeto'" id="reservedMissingComponent" @click="changeInterface">
+        <div class="button-container">
+          <font-awesome-icon :icon="['fas', 'question']" class="icon"/>
+          <div class="text">Foglalt hiányzó</div>
+        </div>
+      </button>
       <button v-show="role === 'raktarvezeto'" id="changeComponentPrice" @click="changeInterface">
         <div class="button-container">
           <font-awesome-icon class="icon" :icon="['fas', 'dollar-sign']" />
@@ -86,12 +98,6 @@ const changeInterface = (event: Event) => {
           <div class="text">Projekt alkatrészek</div>
         </div>
       </button>
-      <!-- <button v-show="role === 'admin'" id="NewUser" @click="changeInterface">
-        <div class="button-container">
-          <font-awesome-icon class="icon" :icon="['fas', 'user-plus']" />
-          <div class="text">Felhasználó</div>
-        </div>
-      </button> -->
       <button @click="logout">
         <div class="button-container">
           <font-awesome-icon class="icon" icon="fa-solid fa-right-from-bracket" />
