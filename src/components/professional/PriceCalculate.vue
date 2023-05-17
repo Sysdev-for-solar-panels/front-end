@@ -1,9 +1,61 @@
-<script setup lang="ts">
+<script lang="ts">
 
+import { defineComponent, ref } from 'vue';
+
+interface PriceCal {
+    name: string;
+    description: string;
+    status: string;
+    sumPrice: number
+}
+
+
+export default defineComponent({
+  data() {
+    return {
+      prices: ref<PriceCal[]>()
+    };
+  },
+  created() {
+    fetch('http://localhost:5235/api/price-calculate', {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+    })
+      .then(response => response.json())
+      .then((data: PriceCal[]) => {
+        this.prices = data;
+        console.log(data);
+      });
+  },
+});
 
 </script>
 
 <template>
+  <div class="wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Projekt neve</th>
+          <th>Leírás</th>
+          <th>Státusz</th>
+          <th>Projekt ár kalkuláció</th>
+        </tr>
+      </thead>
+      <tbody>
+       <tr v-for="(Project) in prices" :key="Project.name">
+          <td>{{ Project.name }}</td>
+          <td>{{ Project.description }}</td>
+          <td>{{ Project.status }}</td>
+          <td>{{ Project.sumPrice +' Ft'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 <style scoped>
 .wrapper {

@@ -1,18 +1,48 @@
-<script setup lang="ts">
+<script lang="ts">
 import { createToast } from 'mosha-vue-toastify'
-import { ref } from 'vue';
+import { defineComponent,ref } from 'vue';
 
-interface Project {
-    projectNames: string
+interface ProjectStat {
+    name: string;
+    description: string;
+    status: string;
+    user_id: number;
+    Location: string;
 }
-const closedProject = ref<string>()
 
-const project = ref<Project[]>()
-const selectedProject = ref()
-
-
-const closeProject = async () => {
-  const response = await fetch('http://localhost:5235/api/close-project', {
+export default defineComponent({
+  data() {
+    return {
+        projectStat: ref<ProjectStat[]>(),
+        selectedProject:'',
+        selectedStatus: ''
+    };
+  },
+  created() {
+    this.listProjects();
+  },
+  methods: {
+    async listProjects() {
+      const response = await fetch('http://localhost:5235/api/list-project',{
+        method: 'GET',
+        credentials: 'include',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      if (response.status === 200) {
+        const data = await response.json();
+        this.projectStat = data;
+      } else if (response.status === 404) {
+        createToast('Hiányzó adat!', {
+          position: 'bottom-right',
+          transition: 'slide'
+        })
+      }
+    },
+    async ProjectStatus() {
+      const response = await fetch('http://localhost:5235/api/project-status', {
         method: 'POST',
         credentials: 'include',
         mode: 'cors',
@@ -20,12 +50,13 @@ const closeProject = async () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          cProject: closeProject
+          ProjectName: this.selectedProject,
+          status: this.selectedStatus
         })
-      })
+      });
     
       if (response.status === 200) {
-        createToast('Sikeres alkatrész hozzáadás a projekthez!', {
+        createToast('Sikeres projekt státusz módosítás!', {
           position: 'bottom-right',
           transition: 'slide'
         })
@@ -35,7 +66,10 @@ const closeProject = async () => {
           transition: 'slide'
         })
       }
-}
+    }
+  }
+});
+
 </script>
 
 <template>
@@ -43,16 +77,16 @@ const closeProject = async () => {
       <div class="adderBox">
           <label for="projects">Projektek</label>
           <select v-model="selectedProject" id="projects" required>
-              <option v-for="(pp,index) in project" :value="pp.projectNames" :key="index">{{ pp.projectNames }}</option>
-          </select>
+            <option v-for="(Project) in projectStat" :key="Project.name">{{ Project.name }}</option>
+        </select>
           <br /><br />
           <label for="end">Lezárás</label>
-            <select v-model="closedProject" id="end" required>
+            <select v-model="selectedStatus" id="end" required>
             <option value="completed">Completed</option>
             <option value="failed">Failed</option>
             </select>
             <br /><br />
-        <input autocomplete="off" type="submit" @click="closeProject" value="Hozzáad" />
+        <input autocomplete="off" type="submit" @click="ProjectStatus" value="Hozzáad" />
       </div>
     </div>
   </template>
@@ -88,7 +122,7 @@ input[type='number'] {
   padding: 25px;
   height: 40px;
   font-size: 18px;
-  width: 400px;
+  width: 100%;
 }
 .item {
   width: 100%;
@@ -108,10 +142,7 @@ option {
   color: black;
   background-color: white;
 }
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
+
 label{
   font-size: 20px;
 }

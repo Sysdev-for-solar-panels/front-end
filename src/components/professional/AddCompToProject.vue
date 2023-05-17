@@ -1,18 +1,79 @@
-<script setup lang="ts">
+<script lang="ts">
 import { createToast } from 'mosha-vue-toastify'
-import { ref } from 'vue';
+import { defineComponent , ref} from 'vue';
 
-interface partProject {
-    partNames: string
-    projectNames: string
+interface Part{
+    ID: number
+    Name: string
+    Quantity: number
+    MaxQuantity: number
+    Price: number
+    Status: string
 }
 
-const partsandProject = ref<partProject[]>()
-const selectedPart = ref('')
-const projectName = ref<string>()
-const partName = ref<string>()
-const selectedProject = ref<string>('')
-const addComponentToProject =  async () => {
+interface Project{
+    ID: number
+    name: string;
+    description: string;
+    status: string;
+    user_id: number;
+    Location: string;
+}
+
+export default defineComponent({
+  data() {
+    return {
+      parts: ref<Part[]>(),
+      projects: ref<Project[]>(),
+      partID: 0,
+      projectID:0
+    };
+  },
+  created() {
+    this.listProjects();
+    this.listParts();
+  },
+  methods: {
+    async listProjects() {
+      const response = await fetch('http://localhost:5235/api/list-project', {
+        method: 'GET',
+        credentials: 'include',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      if (response.status === 200) {
+        const data = await response.json();
+        this.projects = data;
+      } else if (response.status === 404) {
+        createToast('Hiányzó adat!', {
+          position: 'bottom-right',
+          transition: 'slide'
+        });
+      }
+    },
+    async listParts() {
+      const response = await fetch('http://localhost:5235/api/list-components', {
+        method: 'GET',
+        credentials: 'include',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      if (response.status === 200) {
+        const data = await response.json();
+        this.parts = data;
+      } else if (response.status === 404) {
+        createToast('Hiányzó adat!', {
+          position: 'bottom-right',
+          transition: 'slide'
+        });
+      }
+    },
+    async addComponentToProject() {
+      console.log(this.projectID+" "+this.partID)
       const response = await fetch('http://localhost:5235/api/set-project-components', {
         method: 'POST',
         credentials: 'include',
@@ -21,13 +82,13 @@ const addComponentToProject =  async () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          prName: projectName.value,
-          paName: partName.value
+          ProjectID: this.projectID,
+          ComponentID: this.partID
         })
-      })
+      });
     
       if (response.status === 200) {
-        createToast('Sikeres alkatrész hozzáadás a projekthez!', {
+        createToast('Sikeres alkatrész hozzá rendelés projekthez!', {
           position: 'bottom-right',
           transition: 'slide'
         })
@@ -38,18 +99,21 @@ const addComponentToProject =  async () => {
         })
       }
     }
+  }
+});
+
 </script>
 
 <template>
     <div class="wrapper">
       <div class="adderBox">
         <label for="parts">Alkatrészek</label><br>
-        <select v-model="selectedPart" id="parts" required>
-            <option v-for="(pp,index) in partsandProject" :value="pp.partNames" :key="index">{{ pp.partNames }}</option>
+        <select v-model="partID" id="parts" required>
+            <option v-for="p in parts" :key="p.ID" :value="p.ID">{{ p.Name }}</option>
         </select><br>
         <label for="projects">Projektek</label><br>
-        <select v-model="selectedProject" id="projects" required>
-            <option v-for="(pp,index) in partsandProject" :value="pp.projectNames" :key="index">{{ pp.projectNames }}</option>
+        <select v-model="projectID" id="projects" required>
+            <option v-for="(Project) in projects" :key="Project.ID" :value="Project.ID">{{ Project.name }}</option>
         </select>
         <br /><br />
         <input autocomplete="off" type="submit" @click="addComponentToProject" value="Hozzáad" />
