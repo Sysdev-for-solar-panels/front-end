@@ -40,9 +40,7 @@ const AddNewProject = async () => {
 
 <template>
   <div class="wrapper">
-    
     <div class="container">
-      <br>
       <input v-model="projectName" autocomplete="off" type="text" id="projectName" placeholder="Név"/>
       <input v-model="location" autocomplete="off" type="text" id="location" placeholder="Helyszín"/>
       <input v-model="description" autocomplete="off" type="text" id="description" placeholder="Leírás"/>
@@ -64,7 +62,10 @@ const AddNewProject = async () => {
 /* Add padding to containers */
 .container {
   display: grid;
-  padding: 10px;
+  padding-top: 15%;
+  padding-bottom: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
   background-color: #83b8ff;
   height: 90vh;
 }
@@ -87,7 +88,7 @@ input[type='text']:focus {
 }
 input[type='submit'] {
   padding: 10px;
-  width: 400px;
+  width: 320px;
   background-color: #2fffad;
   color: black;
   height: 50px;

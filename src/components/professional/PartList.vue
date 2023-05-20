@@ -81,5 +81,6 @@ tbody td {
   padding: 10px;
   background-color: hsl(205, 44%, 22%);
   color:white;
+  text-align: center;
 }
 </style>

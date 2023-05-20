@@ -76,32 +76,30 @@ export default defineComponent({
 
 <template>
     <div class="wrapper">
-      <div class="adderBox">
-          <h1>Idő és Munkadíj</h1>
+          <p>Projekt: </p>
           <select v-model="selectedProject" id="projects" required>
               <option v-for="(pp,index) in project" :value="pp.name" :key="index">{{ pp.name }}</option>
           </select>
           <br /><br />
-          <input v-model="workingTime" autocomplete="off" type="text" id="workingTime"  placeholder="Munkavégzési idő"/><br /><br />
-          <input v-model="workingPrice" autocomplete="off" type="text" id="workingPrice" placeholder="Munkadíj"/><br /><br />
-
-        <input autocomplete="off" type="submit" @click="AddTimeAndPrice" value="Hozzáad" />
-      </div>
+          <p>Munkavégzési idő:</p><br />
+          <input v-model="workingTime" autocomplete="off" type="text" id="workingTime"><br /><br />
+          <p>Munkavégzési díj:</p><br />
+          <input v-model="workingPrice" autocomplete="off" type="text" id="workingPrice"/><br /><br />
+          <input autocomplete="off" type="submit" @click="AddTimeAndPrice" value="Hozzáad" />
     </div>
   </template>
-<style>
+<style scoped>
 * {
     box-sizing: border-box;
   }
   .wrapper {
-  height: 90vh;
-  background-color: #83b8ff;
-}
-.adderBox {
-  padding-left: 35%;
-  padding-right: 35%;
-  padding-top: 19%;
-  color: black;
+    padding-left: 30%;
+    padding-right: 30%;
+    padding-top: 10%;
+    padding-bottom:10%;
+    color: black;
+    height: 90vh;
+    background-color: #83b8ff;
 }
 
 input[type='submit'] {

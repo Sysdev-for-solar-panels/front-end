@@ -106,16 +106,16 @@ export default defineComponent({
 
 <template>
     <div class="wrapper">
-      <div class="adderBox">
-        <label for="parts">Alkatrészek</label><br>
+      <div class="content">
+        <label for="parts">Alkatrészek</label><br><br>
         <select v-model="partID" id="parts" required>
             <option v-for="p in parts" :key="p.ID" :value="p.ID">{{ p.Name }}</option>
-        </select><br>
-        <label for="projects">Projektek</label><br>
+        </select><br><br>
+        <label for="projects">Projektek</label><br><br>
         <select v-model="projectID" id="projects" required>
             <option v-for="(Project) in projects" :key="Project.ID" :value="Project.ID">{{ Project.name }}</option>
         </select>
-        <br /><br />
+        <br /><br /><br />
         <input autocomplete="off" type="submit" @click="addComponentToProject" value="Hozzáad" />
       </div>
     </div>
@@ -128,10 +128,11 @@ export default defineComponent({
   height: 90vh;
   background-color: #83b8ff;
 }
-.adderBox {
-  padding-left: 35%;
-  padding-right: 35%;
-  padding-top: 19%;
+.content {
+  padding-top: 10%;
+  padding-bottom: 10%;
+  padding-left: 30%;
+  padding-right: 30%;
   color: black;
 }
 
