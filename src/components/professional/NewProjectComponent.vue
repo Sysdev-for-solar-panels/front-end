@@ -42,23 +42,18 @@ const AddNewProject = async () => {
   <div class="wrapper">
     
     <div class="container">
-      <h1>Új projekt hozzáadása</h1><br>
-      <input v-model="projectName" autocomplete="off" type="text" id="projectName" placeholder="Projekt neve"/><br><br>
-      <input v-model="location" autocomplete="off" type="text" id="location" placeholder="Projekt helyszín"/><br><br>
-      <input v-model="description" autocomplete="off" type="text" id="description" placeholder="Projekt leírása"/><br><br>
-      <input v-model="orderData" autocomplete="off" type="text" id="quanorderDatatity" placeholder="Projekt megrendelő ID"/><br><br>
-      <input autocomplete="off" type="submit" @click="AddNewProject" value="Projekt hozzáadása" /><br>
+      <br>
+      <input v-model="projectName" autocomplete="off" type="text" id="projectName" placeholder="Név"/>
+      <input v-model="location" autocomplete="off" type="text" id="location" placeholder="Helyszín"/>
+      <input v-model="description" autocomplete="off" type="text" id="description" placeholder="Leírás"/>
+      <input v-model="orderData" autocomplete="off" type="text" id="quanorderDatatity" placeholder="Megrendelő (id)"/>
+      <input autocomplete="off" type="submit" @click="AddNewProject" value="Hozzáadás" />
     </div>
   </div>
 </template>
 
 <style scoped>
 
-h1{
-  text-align: center;
-  letter-spacing: 3px;
-  color: black;
-}
 .wrapper {
   height: 90vh; /*90vh volt az original*/
   background-color: #83b8ff;
@@ -69,7 +64,7 @@ h1{
 /* Add padding to containers */
 .container {
   display: grid;
-  padding: 16px;
+  padding: 10px;
   background-color: #83b8ff;
   height: 90vh;
 }
