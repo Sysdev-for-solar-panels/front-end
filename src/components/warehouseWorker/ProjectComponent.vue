@@ -52,7 +52,7 @@ watch(selectedPart,async () => {
 <template>
     <div class="wrapper">
          <select v-model="selectedPart" id="parts" required>
-            <option v-for="item in projects" :value="item.name" :key="item.name">{{ item.name }}</option>
+            <option v-for="item in projects" :value="item.name" :key="item.name.toString()">{{ item.name }}</option>
         </select><br>
         <table>
       <thead>
@@ -106,5 +106,6 @@ tbody td {
   padding: 10px;
   background-color: hsl(205, 44%, 22%);
   color:white;
+  text-align: center;
 }
 </style>
