@@ -73,7 +73,6 @@ export default defineComponent({
       }
     },
     async addComponentToProject() {
-      console.log(this.projectID+" "+this.partID)
       const response = await fetch('http://localhost:5235/api/set-project-components', {
         method: 'POST',
         credentials: 'include',
