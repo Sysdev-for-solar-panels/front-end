@@ -42,7 +42,7 @@ export default defineComponent({
       }
     },
     async ProjectStatus() {
-      const response = await fetch('http://localhost:5235/api/project-status', {
+      const response = await fetch('http://localhost:5235/api/project-close_fail', {
         method: 'POST',
         credentials: 'include',
         mode: 'cors',
@@ -82,8 +82,8 @@ export default defineComponent({
           <br /><br />
           <label for="end">Lezárás</label>
             <select v-model="selectedStatus" id="end" required>
-            <option value="completed">Completed</option>
-            <option value="failed">Failed</option>
+            <option value="Completed">Completed</option>
+            <option value="Failed">Failed</option>
             </select>
             <br /><br />
             
