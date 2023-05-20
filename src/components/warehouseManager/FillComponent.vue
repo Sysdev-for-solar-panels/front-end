@@ -121,20 +121,26 @@ const fillUp = async (name:string, quantity:number, maxQuantity:number, type:str
         <div>
           {{ item.ComponentMaxQuantity }}
         </div>
+        <div class="reColor">
         <div v-if="item.ComponentId" @click="fillUp(item.ComponentName,item.ComponentQuantity, item.ComponentMaxQuantity, item.ComponentName, item.ComponentId)" class="add-button">
           Feltölt <font-awesome-icon :icon="['fa', 'circle-plus']" />
         </div>
         <div v-else @click="join(item.StackId,selected)" class="join-button">
-          Hozzá rendel <font-awesome-icon :icon="['fas', 'layer-group']" />
+          Hozzárendel <font-awesome-icon :icon="['fas', 'layer-group']" />
         </div>
+      </div>
       </div>
     </div>
 </template>
 
 <style scoped>
+.reColor{
+  color: white;
+  padding: 4%;
+}
 .wrapper {
   height: 90vh;
-  background-color: rgb(255, 255, 255, 0.8);
+  background-color: rgb(255, 255, 255, 0.5);
   color: black;
 }
 

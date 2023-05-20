@@ -68,7 +68,7 @@ const addComponent = async () => {
 <style scoped>
 .wrapper {
   height: 90vh;
-  background-color: rgb(255, 255, 255, 0.8);
+  background-color: rgb(255, 255, 255, 0.5);
 }
 .adderBox {
   padding-left: 35%;

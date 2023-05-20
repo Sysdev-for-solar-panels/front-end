@@ -41,7 +41,7 @@ onBeforeMount(() => {
         <tr v-for="part in missingParts" :key="part.ComponentName">
           <td>{{ part.ComponentID }}</td>
           <td>{{ part.ComponentName }}</td>
-          <td>{{ part.MissingPart }}</td>
+          <td>{{ Math.abs(part.MissingPart) }}</td>
           <td>{{ part.ReservedPart }}</td>
         </tr>
       </tbody>
@@ -73,5 +73,6 @@ tbody td {
   padding: 10px;
   background-color: hsl(205, 44%, 22%);
   color:white;
+  text-align: center;
 }
 </style>

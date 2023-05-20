@@ -57,17 +57,23 @@ watch(() => prop.dataChanged, async () => {
       <div>
         {{ component["Price"] }}
       </div>
-      <div @click="changePrice(component['ID'])" class="button">
-          Új ár <font-awesome-icon :icon="['fa', 'money-bill']" />
+      <div class="reColor">
+        <div @click="changePrice(component['ID'])" class="button">
+            Új ár <font-awesome-icon :icon="['fa', 'money-bill']" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.reColor{
+  color: white;
+  padding: 4%;
+}
 .wrapper {
   height: 90vh;
-  background-color: rgb(255, 255, 255, 0.8);
+  background-color: rgb(255, 255, 255, 0.5);
   color: black;
 }
 

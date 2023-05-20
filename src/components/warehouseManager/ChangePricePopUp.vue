@@ -42,22 +42,42 @@ const changePrice = async () =>{
 </script>
 
 <template>
-    <div>
-        <p>Kérem adja meg a kivánt új árat</p>
-        <div style="height: 40%;">
+ <!--  <div class="popUp">
+        <p>Új ár:</p>
+        <div class="popUpInternals">
             <input v-model="value" type="number"/>
         </div>
-        <button @click="changePrice">Változtat</button>
+        <button @click="changePrice">Megváltoztat</button>
+    </div>--> 
+    <div class="box">
+        <br>
+        <label>Új ár:</label>
+        <div class="input"><input v-model="value" type="number"/></div>
+        <div class="changeBtn"><button @click="changePrice">Megváltoztat</button></div>
     </div>
 </template>
 
 <style scoped>
-div {
-    width: 400px;
-    height: 200px;
-    background-color: cadetblue;
-    display: grid;
+.box{
+    background-color: gray;
     text-align: center;
-    color: black;
+    color: white;
+    width: 300px;
+    height: 200px;
 }
+input{
+    width: 200px;
+    height: 40px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+button{
+    color: black;
+    background-color: white;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+}
+
 </style>
