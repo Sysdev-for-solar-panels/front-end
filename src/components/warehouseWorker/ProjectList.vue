@@ -22,7 +22,6 @@ const getProjects = async () => {
     })
     projects.value = await result.json()
 }
-
 onBeforeMount(() => {
   getProjects()
 })
@@ -36,8 +35,9 @@ onBeforeMount(() => {
           <th>Projekt neve</th>
           <th>Helyszín</th>
           <th>Leírás</th>
-          <th>Megrendelő adatok</th>
+          <th>Megrendelő</th>
           <th>Státusz</th>
+          <th>@@@@@</th>
         </tr>
       </thead>
       <tbody>
@@ -47,6 +47,7 @@ onBeforeMount(() => {
           <td>{{ Project.description }}</td>
           <td>{{ Project.user_id }}</td>
           <td>{{ Project.status }}</td>
+          <td><button @click="">Kiválaszt</button></td>
         </tr>
       </tbody>
     </table>
@@ -71,14 +72,22 @@ thead th {
   background-color: #0f6bae;
   font-weight: bold;
   text-align: center;
-  padding: 10px;
+  padding: 5px;
 }
 
 tbody td {
   border: 1px solid #DDD;
-  padding: 10px;
+  padding: 5px;
   background-color: hsl(205, 44%, 22%);
   color:white;
   text-align: center;
+}
+button{
+  min-width:100px;
+  background-color: antiquewhite;
+  background-color: #0f6bae;
+  border: none;
+  color: white;
+  padding: 10px;
 }
 </style>
