@@ -1,7 +1,9 @@
 <script lang="ts">
 import { createToast } from 'mosha-vue-toastify'
 import { defineComponent , ref} from 'vue';
-
+interface Draft{
+  id: number;
+}
 interface Part{
     ID: number
     Name: string
@@ -97,6 +99,19 @@ export default defineComponent({
           transition: 'slide'
         })
       }
+    },
+    async SetProjectToDraft() {
+      const response = await fetch('http://localhost:5235/api/set-project-to-draft', {
+        method: 'POST',
+        credentials: 'include',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: this.projectID,
+        })
+      });
     }
   }
 });
@@ -115,7 +130,7 @@ export default defineComponent({
             <option v-for="(Project) in projects" :key="Project.ID" :value="Project.ID">{{ Project.name }}</option>
         </select>
         <br /><br /><br />
-        <input autocomplete="off" type="submit" @click="addComponentToProject" value="Hozzáad" />
+        <input autocomplete="off" type="submit" @click="addComponentToProject();SetProjectToDraft()" value="Hozzáad" />
       </div>
     </div>
   </template>
