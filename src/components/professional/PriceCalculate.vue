@@ -44,6 +44,7 @@ export default defineComponent({
           <th>Leírás</th>
           <th>Státusz</th>
           <th>Projekt ár kalkuláció</th>
+          <th>@@@@@@</th>
         </tr>
       </thead>
       <tbody>
@@ -52,6 +53,12 @@ export default defineComponent({
           <td>{{ Project.description }}</td>
           <td>{{ Project.status }}</td>
           <td>{{ Project.sumPrice +' Ft'}}</td>
+          <td>
+            <select>
+              <option>Wait</option>
+              <option>Scheduled</option>
+            </select>
+          </td>
         </tr>
       </tbody>
     </table>
