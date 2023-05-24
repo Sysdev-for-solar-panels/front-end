@@ -75,7 +75,7 @@ input[type='text'] {
   text-align: center;
   width: 50%;
   padding: 15px;
-  margin: 0 auto;
+  margin: 10px auto;
   display: inline-block;
   border: none;
   background: #e1e1e1;
