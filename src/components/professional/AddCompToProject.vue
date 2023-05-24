@@ -134,7 +134,7 @@ export default defineComponent({
       </div>
     </div>
   </template>
-<style>
+<style scoped>
 * {
     box-sizing: border-box;
   }
