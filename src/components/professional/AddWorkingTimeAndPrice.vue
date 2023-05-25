@@ -53,8 +53,8 @@ export default defineComponent({
         },
         body: JSON.stringify({
           ProjectName: this.selectedProject,
-          Time: this.workingPrice,
-          Price: this.workingTime
+          Time: this.workingTime,
+          Price: this.workingPrice
         })
       })
     
