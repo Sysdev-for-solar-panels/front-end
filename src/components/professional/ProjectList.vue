@@ -1,6 +1,6 @@
-<script lang="ts">
+<script setup lang="ts">
 
-import { defineComponent, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 interface Project {
     name: string;
@@ -11,27 +11,23 @@ interface Project {
 
 }
 
-export default defineComponent({
-  data() {
-    return {
-        projects: ref<Project[]>()
-    };
-  },
-  created() {
-    fetch('http://localhost:5235/api/list-project', {
+const projects = ref<Project[]>()
+const listProject = async () => {
+  const response = await fetch('http://localhost:5235/api/list-project', {
       method: 'GET',
       credentials: 'include',
       mode: 'cors',
       headers: {
       'Content-Type': 'application/json'
       },
-    })
-      .then(response => response.json())
-      .then((data: Project[]) => {
-        this.projects = data;
-      });
-  },
-});
+  })
+  const result = await response.json()
+  projects.value = result
+}
+
+onBeforeMount(() => {
+  listProject()
+})
 </script>
 
 <template>
@@ -42,16 +38,14 @@ export default defineComponent({
           <th>Projekt neve</th>
           <th>Helyszín</th>
           <th>Leírás</th>
-          <th>Megrendelő adatok</th>
           <th>Státusz</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(Project) in projects" :key="Project.name">
+        <tr v-for="(Project) in projects" :key="Project.status">
           <td>{{ Project.name }}</td>
           <td>{{ Project.Location }}</td>
           <td>{{ Project.description }}</td>
-          <td>{{ Project.user_id }}</td>
           <td>{{ Project.status }}</td>
         </tr>
       </tbody>

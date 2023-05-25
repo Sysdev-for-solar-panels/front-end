@@ -1,6 +1,6 @@
-<script lang="ts">
+<script setup lang="ts">
 import { createToast } from 'mosha-vue-toastify'
-import { defineComponent,ref } from 'vue';
+import { onBeforeMount,ref } from 'vue';
 
 interface ProjectStat {
     name: string;
@@ -10,39 +10,31 @@ interface ProjectStat {
     Location: string;
 }
 
-export default defineComponent({
-  data() {
-    return {
-        projectStat: ref<ProjectStat[]>(),
-        selectedProject:'',
-        selectedStatus: ''
-    };
-  },
-  created() {
-    this.listProjects();
-  },
-  methods: {
-    async listProjects() {
-      const response = await fetch('http://localhost:5235/api/list-project',{
-        method: 'GET',
-        credentials: 'include',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      });
-      if (response.status === 200) {
-        const data = await response.json();
-        this.projectStat = data;
-      } else if (response.status === 404) {
-        createToast('Hiányzó adat!', {
-          position: 'bottom-right',
-          transition: 'slide'
-        })
-      }
-    },
-    async ProjectStatus() {
-      const response = await fetch('http://localhost:5235/api/project-close_fail', {
+const projectStat = ref<ProjectStat[]>()
+const selectedProject = ref('')
+const selectedStatus = ref('')
+const listProjects = async () => {
+const response = await fetch('http://localhost:5235/api/list-project',{
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+    if (response.status === 200) {
+      const data = await response.json();
+      projectStat.value = data;
+    } else if (response.status === 404) {
+      createToast('Hiányzó adat!', {
+        position: 'bottom-right',
+        transition: 'slide'
+      })
+    }
+  }
+
+const ProjectStatus = async () => {
+  const response = await fetch('http://localhost:5235/api/project-close-fail', {
         method: 'POST',
         credentials: 'include',
         mode: 'cors',
@@ -50,10 +42,10 @@ export default defineComponent({
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          ProjectName: this.selectedProject,
-          status: this.selectedStatus
+          ProjectName: selectedProject.value,
+          status: selectedStatus.value
         })
-      });
+      })
     
       if (response.status === 200) {
         createToast('Sikeres projekt státusz módosítás!', {
@@ -66,10 +58,11 @@ export default defineComponent({
           transition: 'slide'
         })
       }
-    }
-  }
-});
+}
 
+onBeforeMount(() => {
+  listProjects()
+})
 </script>
 
 <template>

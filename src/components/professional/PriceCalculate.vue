@@ -1,23 +1,103 @@
-<script lang="ts">
+<script setup lang="ts">
 
-import { defineComponent, ref } from 'vue';
+import { createToast } from 'mosha-vue-toastify';
+import { onBeforeMount, ref } from 'vue';
 
-interface PriceCal {
+//TODO: ár kiírása mindenhova
+
+// interface PriceCal {
+//     name: string;
+//     description: string;
+//     status: string;
+//     sumPrice: number
+// }
+
+interface Project {
+    ID:number;
     name: string;
     description: string;
     status: string;
-    sumPrice: number
+    user_id: number;
+    Location: string;
+    price: number;
 }
 
+// const prices = ref<PriceCal[]>()
+const projects = ref<Project[]>()
+// const calcPrice = async () => {
+//   const result = fetch('http://localhost:5235/api/price-calculate', {
+//       method: 'GET',
+//       credentials: 'include',
+//       mode: 'cors',
+//       headers: {
+//       'Content-Type': 'application/json'
+//       },
+//     })
+//     prices.value = await (await result).json()
+// }
+const priceCalculation = async (obj:Project) => {
+  if (['Scheduled','InProgress'].includes(obj.status)) {
+    const response = await fetch('http://localhost:5235/api/price-calculate', {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: obj.name,
+      description: obj.description,
+      status: obj.status,
+      sumPrice: obj.price,
+      id: obj.ID,
+      state: obj.status
+    })
+  })
+  const result = await response.json()
+  const price = result[0].sumPrice
+  obj.price = price
+  } else {
+    obj.price = 0
+  }
+}
 
-export default defineComponent({
-  data() {
-    return {
-      prices: ref<PriceCal[]>()
-    };
-  },
-  created() {
-    fetch('http://localhost:5235/api/price-calculate', {
+const changeStatus = async (status:String,id:number) => {
+  const response = await fetch('http://localhost:5235/api/set-project-status', {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: id,
+      status: status
+    })
+  })
+
+  if(response.ok) {
+    const foundElement:Project = projects.value?.find(element => element.ID === id)!
+    foundElement.status = status.toString()
+
+    if (status === "Scheduled") {
+      createToast('Sikeres árkalkuláció', {
+        position: 'bottom-right',
+        transition: 'slide'
+      })
+
+      priceCalculation(foundElement)
+    }
+
+  } else {
+    createToast("Sikertelen állapotváltozás", {
+      position: "bottom-right",
+      transition: 'slide'
+    })
+  }
+}
+
+const listProject = async () => {
+  const response = await fetch('http://localhost:5235/api/list-project', {
       method: 'GET',
       credentials: 'include',
       mode: 'cors',
@@ -25,14 +105,16 @@ export default defineComponent({
       'Content-Type': 'application/json'
       },
     })
-      .then(response => response.json())
-      .then((data: PriceCal[]) => {
-        this.prices = data;
-        console.log(data);
-      });
-  },
-});
+  const result:Project[] = await response.json()
+  for(let item of result) {
+    await priceCalculation(item)
+  }
+  projects.value = result
+}
 
+onBeforeMount(() => {
+  listProject()
+})
 </script>
 
 <template>
@@ -44,23 +126,27 @@ export default defineComponent({
           <th>Leírás</th>
           <th>Státusz</th>
           <th>Projekt ár kalkuláció</th>
-          <th>@@@@@@</th>
+          <th>Ár kalkuláció</th>
         </tr>
       </thead>
-      <tbody>
-       <tr v-for="(Project) in prices" :key="Project.name">
-          <td>{{ Project.name }}</td>
-          <td>{{ Project.description }}</td>
-          <td>{{ Project.status }}</td>
-          <td>{{ Project.sumPrice +' Ft'}}</td>
-          <td>
-            <select>
-              <option>Wait</option>
-              <option>Scheduled</option>
-            </select>
-          </td>
-        </tr>
-      </tbody>
+      <template v-for="Project in projects" :key="Project.status">
+        <tbody>
+          <tr v-if="['Draft','Wait','Scheduled','InProgress'].includes(Project.status)">
+            <td>{{ Project.name }}</td>
+            <td>{{ Project.description }}</td>
+            <td>{{ Project.status }}</td>
+            <td>{{ Project.price }}</td>
+            <td>
+              <button v-if="['Draft'].includes(Project.status)" @click="changeStatus('Wait',Project.ID)">
+                  Wait
+              </button>
+              <button v-if="['Draft','Wait'].includes(Project.status)" @click = "changeStatus('Scheduled',Project.ID)">
+                Scheduled 
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </template>
     </table>
   </div>
 </template>
